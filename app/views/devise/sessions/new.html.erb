@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="large-7 columns">
+    <h1>Effettua il Login</h1>
+    <p>Aiutaci ad Aiutare chi ha bisogno di una mano</p>
+  </div>
+
+  <div class="large-5 columns">
+    <h1>Sign In</h1>
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+
+      <div>
+        <%= f.email_field :email, :placeholder => 'E-mail' %>
+      </div>
+      <div>
+        <%= f.password_field :password, placeholder: 'Password' %>
+      </div>
+
+      <% if devise_mapping.rememberable? -%>
+        <div>
+          <%= f.check_box :remember_me %> <%= f.label :remember_me, 'Ricordati l\'accesso'%>
+        </div>
+      <% end -%>
+
+      <div><%= f.submit "Login", class: "button large-12" %></div>
+    <% end %>
+
+    <div class="panel log_reg">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<% if user_signed_in? %>
+  <% if current_user.try(:admin?) %>
+    <div class="row">
+      <div class="large-12 columns">
+        <%= render template: "farmland/home" %>
+      </div>
+    </div>
+  <% else %>
+    <%= render template: "farmland/home" %>
+  <% end %>
+<% else %>
+  <%= render template: "farmland/home" %>
+<% end %>
+

@@ -1,0 +1,135 @@
+<!-- Content Slider -->
+ 
+<div class="row">
+  <div class="large-12 columns">
+     
+    <ul id="featured" data-orbit>
+      <li>
+        <img src="http://placehold.it/1200x500&text=Slide Image 1" alt="slide image">
+        <div class="orbit-caption">
+          Caption One.
+        </div>
+      </li>
+      <li>
+        <img src="http://placehold.it/1200x500&text=Slide Image 2" alt="slide image">
+        <div class="orbit-caption">
+          Caption Two.
+        </div>
+      </li>
+      <li>
+        <img src="http://placehold.it/1200x500&text=Slide Image 3" alt="slide image">
+        <div class="orbit-caption">
+          Caption Three.
+        </div>
+      </li>
+    </ul>
+    <hr/>
+  </div>
+</div>
+ 
+<!-- End Content Slider -->
+
+<!-- Thumbnails -->
+
+<div class="row">
+  <div class="large-12 columns">
+    <div class="large-7 columns">  
+      <div class="panel">
+        <h2 class="centra">Non basta fare del bene, bisogna anche farlo bene.<h2>
+        <hr/>
+            
+        <div class="row">
+          <div class="large-12 columns description">
+            <p>
+                 “Non è tanto quello che facciamo, ma quanto amore mettiamo nel farlo. 
+                 Non è tanto quello che diamo, ma quando amore mettiamo nel dare.” 
+                 <br/><small class="right">- Madre Teresa di Calcutta</small><br/>
+                 <strong>HEART FILLER</strong> ti aiuta ad aiutare gli altri promuovendo
+                 le tue iniziative, ma nello stesso tempo ti permette di fornire il tuo contributo
+                 verso le altre... con la possibilita di monitorare le tue donazioni e sapere
+                 come i tuoi soldi sono stati spesi e se la campagna non raggiunge tutti gli obiettivi
+                 tranquillo la tua donazione ti verra rimborsatà, perchè Non basta fare del bene,
+                 bisogna anche farlo bene. E Ricorda ciò che hai donato, è tuo per sempre. 
+            </p>
+          </div>
+          <br/>
+	  <hr/>
+          <h4 class="centra">Per la tua donazione scegli tra le categorie</h4>
+          <hr/>
+          <br/>
+          <div class="large-9 columns left">
+            <h3>
+              Totale Donazioni!<br/>
+              <strong><%= number_to_currency(@total_donations,:unit => "€ ", :separator => ",", :delimiter => ".") %></strong>
+            </h3>
+          </div>
+          <div class="large-3 columns right">
+            <%= link_to '#', class: 'radius button right' %>
+          </div>
+          <br/>
+        </div>
+      </div>
+    </div>
+
+    <div class="large-5 columns">
+      <div class="row">
+ 
+        <div class="large-6 small-6 columns">
+          <img src="http://placehold.it/1000x1000&text=Thumbnail">
+ 
+          <div class="panel">
+            <h5>Item Name</h5>
+            <h6 class="subheader">$000.00</h6>
+          </div>
+        </div>
+ 
+        <div class="large-6 small-6 columns">
+          <img src="http://placehold.it/500x500&text=Thumbnail">
+
+          <div class="panel">
+            <h5>Item Name</h5>
+            <h6 class="subheader">$000.00</h6>
+          </div>
+        </div>
+ 
+        <div class="large-6 small-6 columns">
+          <img src="http://placehold.it/500x500&text=Thumbnail">
+ 
+          <div class="panel">
+            <h5>Item Name</h5>
+            <h6 class="subheader">$000.00</h6>
+          </div>
+        </div>
+ 
+        <div class="large-6 small-6 columns">
+          <img src="http://placehold.it/500x500&text=Thumbnail">
+ 
+          <div class="panel">
+            <h5>Item Name</h5>
+            <h6 class="subheader">$000.00</h6>
+          </div>
+        </div>
+ 
+        <div class="large-6 small-6 columns">
+          <img src="http://placehold.it/500x500&text=Thumbnail">
+ 
+          <div class="panel">
+            <h5>Item Name</h5>
+            <h6 class="subheader">$000.00</h6>
+          </div>
+        </div>
+ 
+        <div class="large-6 small-6 columns">
+          <img src="http://placehold.it/500x500&text=Thumbnail">
+
+          <div class="panel">
+            <h5>Item Name</h5>
+            <h6 class="subheader">$000.00</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End Thumbnails -->

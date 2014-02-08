@@ -1,0 +1,103 @@
+<div class="row">
+  <div class="large-12 column">
+    <h1>Modifica profilo</h1>
+  </div>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+  <%= devise_error_messages! %>
+  
+  <%= f.fields_for(:information, resource.information) do |info| %>
+
+    <div class="field large-6 column">
+      <%= info.text_field :name, placeholder: 'Nome' %>
+    </div>
+
+    <div class="field large-6 column">
+      <%= info.text_field :surname, placeholder: 'Cognome' %>
+    </div>
+
+    <div class="field large-12 column"><!--la data si ordina da sola per la  in /config/locales/it.yml, altrimenti potevo usare , :order => [:day, :month, :year] -->
+      <%= info.date_select :date_of_birth, start_year: 1900, end_year: (Time.now.year-18), prompt: {day: 'Giorno', month: 'Mese', year: 'Anno'}%>
+    </div>
+
+    <div class="field large-5 column">
+      <%= info.text_field :address, placeholder: 'Indirizzo' %>
+    </div>
+
+    <div class="field large-2 column">
+      <%= info.text_field :post_code, placeholder: 'CAP' %>
+    </div>
+
+    <div class="field large-3 column">
+      <%= info.text_field :city, placeholder: 'Città' %>
+    </div>
+
+    <div class="field large-2 column">
+      <%= info.text_field :country, placeholder: 'Nazione' %>
+    </div>
+
+    <div class="field large-6 column">
+      <%= info.text_field :phone, placeholder: 'Numero di Telefono' %>
+    </div>
+
+
+  <div class="field large-6 column">
+    <%= f.text_field :email, :placeholder => 'E-mail' %>
+  </div>
+
+
+    <div class="field large-12 column">
+      <%= info.file_field :image_url %>
+    </div>
+
+  <% end %>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div class="field large-12 column">Attesa conferma per l'indirizzo email: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <fieldset class="panel large-12 column">
+    <legend><h4>Cambia password</h4></legend>
+
+      <div class="field large-12 column">
+        <h5>Lascia i campi Password e Conferma Password vuoti se non desideri cambiare la password</h5></br>
+      </div>
+
+      <div class="field large-6 column">
+        <%= f.password_field :password, :autocomplete => "off", :placeholder => 'Password' %>
+      </div>
+      <div class="field large-6 column">
+        <%= f.password_field :password_confirmation, :placeholder => 'Conferma password' %>
+      </div>
+
+  </fieldset>
+  
+  <div class="panel large-12 columns">
+    <div class="field large-12 column">
+      <h4>Conferma password</h4>
+      <h5>Abbiamo bisogno della tua password corrente per confermare i tuoi cambiamenti</h5>
+    </div>
+    <div class="field large-12 column">
+      <%= f.password_field :current_password, :placeholder => 'Password corrente' %>
+    </div>
+
+    <div class="actions large-12 column">
+      <%= f.submit "Aggiorna", data: { confirm: 'Sei sicuro?' }, class: 'button large-12 column'%>
+    </div>
+
+    <% end %>
+
+    <br>
+
+    <div class="large-12 column">
+      <h4>Elimina il mio account</h4>
+
+      <h5>Non vuoi più utilizzare il nostro servizio per la creazione di campagne di raccolta fondi? Puoi eliminare il tuo account dal sistema, cancellando di conseguenza tutti i dati ad esso correlato.<br/>Se sei deciso a farlo clicca il pulsante qua sotto.</h5>
+
+      <%= button_to "Elimina", delete_account_path, class: 'button alert large-12 column', :data => { :confirm => "Attenzione, se prosegui il tuo profilo verrà eliminato per sempre. Vuoi procedere?" }, :method => :delete %>
+    </div>
+  
+  </div><!--fine panel-->
+
+</div>
+

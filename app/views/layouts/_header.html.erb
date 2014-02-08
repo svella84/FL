@@ -1,0 +1,49 @@
+<!-- Navigation -->
+<div class="contain-to-grid fixed"> 
+  <nav class="top-bar" data-topbar data-options="is_hover: false">
+    <ul class="title-area">
+      <!-- Title Area -->
+      <li class="name">
+        <h1>
+            <a href="/">FARM <img src="/system/image/contadino.png"> LAND</a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Right Nav Section -->
+      <% if user_signed_in? %>
+        <ul class="right">
+          <li class="divider"></li>
+          <li class="has-dropdown">
+            <a> <%= image_tag current_user.information.image_url.url(:small), :class => 'imgheader' %> <%= current_user.information.name %> <%= current_user.information.surname %> </a>
+            <ul class="dropdown">
+              <li><%= link_to 'Profilo', profile_path %></li>
+              <li><%= link_to 'Le mie Donazioni', my_offers_path %></li>
+              <li><%= link_to 'Le mie Campagne', my_index_path %></li>
+              <li class="divider"></li>
+              <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
+            </ul>
+          </li>
+          <li class="divider"></li>
+          <li class="has-dropdown">
+            <a>CREDIT <%= number_to_currency(current_user.information.credit, unit: "€", separator: ",", delimiter: ".", format: "%n %u") %></a>
+            <ul class="dropdown">
+              <li><%= link_to 'Aggiungi Credito', add_credit_path %></li>
+              <li><%= link_to 'Fai Donazione', campaigns_path %></li>
+            </ul>
+          </li>
+        </ul>
+        <% else %>
+          <ul class="right">
+            <li class="divider"></li>
+            <li class="active"><%= link_to "Sign In", new_user_session_path, :method => :get %></li>
+            <li class="divider"></li>
+            <li class="active"><%= link_to "Sign Up", new_user_registration_path, :method => :get %></li>     
+            <li class="divider"></li>
+          </ul>              
+        <% end %>
+    </section>
+  </nav>
+</div>
