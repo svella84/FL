@@ -1127,12 +1127,12 @@
  $topbar-bg: $topbar-bg-color;
 
 // Height and margin
- $topbar-height: 48px;
+ $topbar-height: 50px;
  $topbar-margin-bottom: 2px;
 
 // Controlling the styles for the title in the top bar
  $topbar-title-weight: bold;
- $topbar-title-font-size: rem-calc(25);
+ $topbar-title-font-size: rem-calc(30);
 
 // Style the top bar dropdown elements
  $topbar-dropdown-bg: #333;

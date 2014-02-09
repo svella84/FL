@@ -3,9 +3,11 @@ class CreateProducts < ActiveRecord::Migration
     create_table :products do |t|
       t.references :category, index: true
       t.string :title
-      t.string :description
+      t.text :description
       t.integer :qnt
-      t.decimal :price, :precision => 10, :scale => 2, :default => 0.0, :null => false
+      t.decimal :price
+      t.boolean :active, :null => true, :default => true
+      t.boolean :push, :null => false, :default => false
       t.attachment :image_url
 
       t.timestamps

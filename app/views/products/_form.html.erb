@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :category_id %><br>
-    <%= f.text_field :category_id %>
+    <%= f.select :category_id, Category.all.map { |c| [c.name, c.id] }, prompt: 'Seleziona una categoria' %>
   </div>
   <div class="field">
     <%= f.label :title %><br>
@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :description %><br>
-    <%= f.text_field :description %>
+    <%= f.text_area :description %>
   </div>
   <div class="field">
     <%= f.label :qnt %><br>
@@ -32,8 +32,16 @@
     <%= f.text_field :price %>
   </div>
   <div class="field">
+    <%= f.label :active %><br>
+    <%= f.check_box :active %>
+  </div>
+  <div class="field">
+    <%= f.label :push %><br>
+    <%= f.check_box :push %>
+  </div>
+  <div class="field">
     <%= f.label :image_url %><br>
-    <%= f.text_field :image_url %>
+    <%= f.file_field :image_url %>
   </div>
   <div class="actions">
     <%= f.submit %>

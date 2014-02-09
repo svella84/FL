@@ -2,6 +2,7 @@ class Information < ActiveRecord::Base
   belongs_to :user
 
   has_attached_file :image_url, :styles => { :large => "980x980>", :medium => "300x300>", :thumb => "100x100>", :small => "30x30>" }, :default_url => "user.jpg"
+  validates_attachment_content_type :image_url, :content_type => /\Aimage\/.*\Z/
 
   ONLY_LETTERS_REGEX = /\A[a-zA-Z]+\Z/
   ONLY_NUMBERS_REGEX = /\A[0-9]+\Z/

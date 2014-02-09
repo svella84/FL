@@ -3,15 +3,19 @@
 one:
   category_id: 
   title: MyString
-  description: MyString
+  description: MyText
   qnt: 1
   price: 9.99
+  active: false
+  push: false
   image_url: 
 
 two:
   category_id: 
   title: MyString
-  description: MyString
+  description: MyText
   qnt: 1
   price: 9.99
+  active: false
+  push: false
   image_url: 

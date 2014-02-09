@@ -5,13 +5,22 @@
       <!-- Title Area -->
       <li class="name">
         <h1>
-            <a href="/">FARM<img src="/system/image/contadino.png">LAND</a>
+            <a href="/">FARM <img src="/system/image/contadino.png"> LAND</a>
         </h1>
       </li>
       <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
     </ul>
  
     <section class="top-bar-section">
+      <ul class="left">
+            <li class="divider"></li>
+            <li class="active">
+              <%= link_to new_user_session_path, :method => :get do %>
+                Cassa <i class="fi-shopping-cart size-24"></i>
+              <% end %>
+            </li>  
+            <li class="divider"></li>
+          </ul>    
       <!-- Right Nav Section -->
       <% if user_signed_in? %>
         <ul class="right">

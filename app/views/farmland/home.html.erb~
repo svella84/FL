@@ -1,0 +1,112 @@
+<!-- Content Slider -->
+ 
+<div class="row">
+  <div class="large-12 columns">
+     
+    <ul id="featured" data-orbit>
+      <li>
+        <img src="http://placehold.it/1200x500&text=Slide Image 1" alt="slide image">
+        <div class="orbit-caption">
+          Caption One.
+        </div>
+      </li>
+      <li>
+        <img src="http://placehold.it/1200x500&text=Slide Image 2" alt="slide image">
+        <div class="orbit-caption">
+          Caption Two.
+        </div>
+      </li>
+      <li>
+        <img src="http://placehold.it/1200x500&text=Slide Image 3" alt="slide image">
+        <div class="orbit-caption">
+          Caption Three.
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+ <br/>
+<!-- End Content Slider -->
+
+<!-- Thumbnails -->
+
+<div class="row">
+  <div class="large-12 columns">
+
+<div class="row">
+    <div class="large-7 columns">  
+      <div class="panel">
+        <h1 class="centra">FARM <img src="/system/image/contadino.png"> LAND</h1>
+        <hr/>
+            
+        <div class="row">
+          <div class="large-12 columns">
+            <p>
+                 “Non è tanto quello che facciamo, ma quanto amore mettiamo nel farlo. 
+                 Non è tanto quello che diamo, ma quando amore mettiamo nel dare.” 
+                 <br/><small class="right">- Madre Teresa di Calcutta</small><br/>
+                 <strong>HEART FILLER</strong> ti aiuta ad aiutare gli altri promuovendo
+                 le tue iniziative, ma nello stesso tempo ti permette di fornire il tuo contributo
+                 verso le altre... con la possibilita di monitorare le tue donazioni e sapere
+                 come i tuoi soldi sono stati spesi e se la campagna non raggiunge tutti gli obiettivi
+                 tranquillo la tua donazione ti verra rimborsatà, perchè Non basta fare del bene,
+                 bisogna anche farlo bene. E Ricorda ciò che hai donato, è tuo per sempre. 
+            </p>
+            <br/>
+	    <hr/>
+            <%= link_to 'Guarda Prodotti per Categoria', root_path, class: 'radius button large-12' %>
+          </div>
+        </div>
+    </div>
+</div>
+
+    <div class="large-5 columns">
+      <div class="row">
+ <h2 class="centra">Ultimi Prodotti Inseriti</h2>
+<% @products.each do |product| %>
+
+
+        <div class="large-6 small-6 columns">
+          <%= image_tag product.image_url.url(:medium) %>
+
+          <div class="panel">
+            <h5><%= product.title %></h5>
+            <h6 class="subheader"><%= number_to_currency(product.price, :unit => "€ ", :separator => ",", :delimiter => ".") %></h6>
+          </div>
+        </div>
+ <% end %>
+
+
+      </div>
+    </div>
+</div>
+  </div>
+</div>
+
+<!-- End Thumbnails -->
+
+  <div class="row">
+    <div class="large-12 columns">
+<hr/>
+      <div class="row">
+ 
+    <!-- Thumbnails -->
+
+<h2 class="centra">Occasione da non Perdere</h2>
+<% @pushs.each do |push| %>
+
+<div class="large-3 small-6 columns">
+          <%= image_tag push.image_url.url(:medium) %>
+
+          <div class="panel">
+            <h5><%= push.title %></h5>
+            <h6 class="subheader"><%= number_to_currency(push.price, :unit => "€ ", :separator => ",", :delimiter => ".") %></h6>
+          </div>
+        </div>
+ <% end %>
+ 
+    <!-- End Thumbnails -->
+      </div>
+      <%= link_to 'Guarda Prodotti in Offerta', root_path, class: 'radius button large-12' %>
+    </div>
+  </div>
