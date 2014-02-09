@@ -7,10 +7,10 @@ Farmland::Application.routes.draw do
 
   devise_for :users, :controllers => { :registrations => "users" }
   devise_scope :user do
-    get "users/profile", :to => "users#show", :as => 'profile'
-    get "users/add_credit", :to => "users#add_credit", :as => 'add_credit'
-    post "users/update_credit", :to => "users#update_credit", :as => 'update_credit'
-    delete "users/delete_account", :to => "users#delete_account", :as => 'delete_account'
+    get "users/profile", :to => "users#show", as: 'profile'
+    get "users/add_credit", :to => "users#add_credit", as: 'add_credit'
+    post "users/update_credit", :to => "users#update_credit", as: 'update_credit'
+    delete "users/delete_account", :to => "users#delete_account", as: 'delete_account'
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

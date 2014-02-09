@@ -20,14 +20,9 @@ class UsersController < Devise::RegistrationsController
   end
 
   def delete_account
-    unless current_user.campaigns && current_user.offers
       current_user.destroy
       flash[:success] = "Eliminazione avvenuta con successo"
       redirect_to root_path
-    else
-      flash[:error] = "Impossibile eliminare l'account, contattare gli amministratori."
-      redirect_to profile_path
-    end
   end
 
   private

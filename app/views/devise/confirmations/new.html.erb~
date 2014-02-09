@@ -19,7 +19,7 @@
   </br>
 
   <div class="large-12 columns">
-    <%= render "devise/shared/links" %>
+    <%= render "devise/shared/links_nil" %>
   </div>
   </div>
 </div>

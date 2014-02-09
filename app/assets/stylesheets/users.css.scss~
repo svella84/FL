@@ -1,10 +1,3 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
-.show_img_user {
-	border-radius: 50%;
-        width: 280px;
-	height: 280px;
-}
-

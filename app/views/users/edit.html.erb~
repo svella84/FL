@@ -21,7 +21,7 @@
     </div>
 
     <div class="field large-5 column">
-      <%= info.text_field :andress, placeholder: 'Indirizzo' %>
+      <%= info.text_field :address, placeholder: 'Indirizzo' %>
     </div>
 
     <div class="field large-2 column">
