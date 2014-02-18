@@ -55,3 +55,7 @@ gem 'foundation-rails'
 
 # Use Hirb for advanced console
 gem 'hirb'
+
+# Use Will-Paginate for the presentation
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'

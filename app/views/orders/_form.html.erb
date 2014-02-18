@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="large-12 columns">
+    <%= form_for(@order) do |f| %>
+  <% if @order.errors.any? %>
+    <div id="error_explanation" >
+      <h2><%= pluralize(@order.errors.count, "error" ) %> prohibited this order from being saved:</h2>
+     
+      <ul>
+      <% @order.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field large-6 columns" >
+    <%= f.label :name %>
+    <%= f.text_field :name, :value => current_user.information.name %>
+  </div>
+  <div class="field large-6 columns" >
+    <%= f.label :surname %>
+    <%= f.text_field :surname, :value => current_user.information.surname %>
+  </div>
+  <div class="field large-4 columns" >
+    <%= f.label :andress %>
+    <%= f.text_field :andress, :value => current_user.information.andress %>
+  </div>
+  <div class="field large-3 columns" >
+    <%= f.label :city %>
+    <%= f.text_field :city, :value => current_user.information.city %>
+  </div>
+  <div class="field large-3 columns" >
+    <%= f.label :country %>
+    <%= f.text_field :country, :value => current_user.information.country %>
+  </div>
+  <div class="field large-2 columns" >
+    <%= f.label :post_code %>
+    <%= f.text_field :post_code, :value => current_user.information.post_code %>
+  </div>
+</div>
+  <div class="actions large-12 columns" >
+    <%= f.submit 'Place Order', class: 'radius button expand success' %>
+  </div>
+
+<% end %>
+</div>

@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="large-12 column">
+    <h1>Aggiunta Credito</h1>
+    <h5>Per qual dannato motivo devo sprecare il mio denaro? Non lo so ma essendo figlio di Onassis non m'interessa...</h5>
+
+    <%= form_for(:information, url: update_credit_path) do |f| %>
+      <% @info.errors.any? do %>
+        <ul>
+          <% @info.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
+      <%= f.text_field :credit, :placeholder => 'Denaro...' %>
+      <%= f.submit 'Aggiungi credito', class: 'button small-12 large-12 columns' %>
+
+    <% end %>
+  </div>
+</div>
+

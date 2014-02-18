@@ -15,8 +15,8 @@
       <ul class="left">
             <li class="divider"></li>
             <li class="active">
-              <%= link_to new_user_session_path, :method => :get do %>
-                Cassa <i class="fi-shopping-cart size-24"></i>
+              <%= link_to cart_path(current_cart), :method => :get do %>
+                Carrello <i class="fi-shopping-cart"></i>
               <% end %>
             </li>  
             <li class="divider"></li>

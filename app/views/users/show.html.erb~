@@ -18,7 +18,7 @@
       </tr>
       <tr>
          <td><h5>Indirizzo</h5></td>
-         <td><h6><%= current_user.information.address %><h6></td> 
+         <td><h6><%= current_user.information.andress %><h6></td> 
       </tr>
       <tr>
          <td><h5>Città</h5></td>

@@ -4,7 +4,26 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @products = Product.where(active: true)
+    @categories = Category.all
+    category = params[:category]
+    if category == "" || category == nil
+      @products = Product.all.paginate(page: params[:page], per_page: 5)
+    else
+      @products = Product.where(category_id: category).paginate(page: params[:page], per_page: 5)
+    end
+  end
+
+  def push
+    @products = Product.where(active: true, push: true)
+    @categories = Category.all
+    category = params[:category]
+    if category == "" || category == nil
+      @products = Product.all.paginate(page: params[:page], per_page: 5)
+    else
+      @products = Product.where(category_id: category).paginate(page: params[:page], per_page: 5)
+    end
+    render "index"
   end
 
   # GET /products/1
@@ -24,7 +43,7 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.json
   def create
-    @product = Product.new(product_params)
+    @product = Product.create( product_params )
 
     respond_to do |format|
       if @product.save
@@ -69,6 +88,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:category_id, :title, :description, :qnt, :price, :active, :push, :image_url)
+params.require(:product).permit(:category_id, :title, :description, :qnt, :price, :active, :push, :image_url)
     end
 end

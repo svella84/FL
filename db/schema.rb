@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140209090607) do
+ActiveRecord::Schema.define(version: 20140211173253) do
+
+  create_table "carts", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -40,6 +45,31 @@ ActiveRecord::Schema.define(version: 20140209090607) do
 
   add_index "information", ["user_id"], name: "index_information_on_user_id"
 
+  create_table "line_items", force: true do |t|
+    t.integer  "cart_id"
+    t.integer  "product_id"
+    t.integer  "qnt",        default: 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "orders", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "status_id",                           default: 1
+    t.string   "name"
+    t.string   "surname"
+    t.string   "andress"
+    t.string   "city"
+    t.string   "country"
+    t.string   "post_code"
+    t.decimal  "expense",    precision: 10, scale: 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "orders", ["status_id"], name: "index_orders_on_status_id"
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id"
+
   create_table "products", force: true do |t|
     t.integer  "category_id"
     t.string   "title"
@@ -57,6 +87,12 @@ ActiveRecord::Schema.define(version: 20140209090607) do
   end
 
   add_index "products", ["category_id"], name: "index_products_on_category_id"
+
+  create_table "statuses", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false

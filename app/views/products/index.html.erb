@@ -1,4 +1,5 @@
-<h1>Listing products</h1>
+<% if current_user.try(:admin?) %>
+<h1>Lista Prodotti</h1>
 
 <table>
   <thead>
@@ -20,7 +21,7 @@
   <tbody>
     <% @products.each do |product| %>
       <tr>
-        <td><%= product.category %></td>
+        <td><%= product.category.name %></td>
         <td><%= product.title %></td>
         <td><%= product.description %></td>
         <td><%= product.qnt %></td>
@@ -39,3 +40,91 @@
 <br>
 
 <%= link_to 'New Product', new_product_path %>
+
+<% else %>
+
+<div class="row">
+  <div class="large-12 small-12 columns">
+    <h1>Lista Prodotti</h1>
+
+    <fieldset>
+      <div class="row">
+        <div class="large-2 small-4 columns">
+          <a href="/products?category=1">
+            <%= image_tag "/system/category/fruit.jpg" %>
+            <div class="panel centra">
+              <h6>Fruit</h6>
+            </div>
+          </a>
+        </div>
+
+        <div class="large-2 small-4 columns">
+          <a href="/products?category=2">
+            <%= image_tag "/system/category/vegetable.jpg" %>
+            <div class="panel centra">
+              <h6>Vegetable</h6>
+            </div>
+          </a>
+        </div>
+
+        <div class="large-2 small-4 columns">
+          <a href="/products?category=3">
+            <%= image_tag "/system/category/gourmet.jpg" %>
+            <div class="panel centra">
+              <h6>Gourmet</h6>
+            </div>
+          </a>
+        </div>
+
+        <div class="large-2 small-4 columns">
+          <a href="/products?category=4">
+            <%= image_tag "/system/category/bio.jpg" %>
+            <div class="panel centra">
+              <h6>Bio</h6>
+            </div>
+          </a>
+        </div>            
+
+        <div class="large-2 small-4 columns">
+          <a href="/products?category=5">
+            <%= image_tag "/system/category/wine.jpg" %>
+            <div class="panel centra">
+              <h6>Wine</h6>
+            </div>
+          </a>
+        </div>
+
+        <div class="large-2 small-4 columns">
+          <a href="/products?category=6">
+            <%= image_tag "/system/category/oil.jpg" %>
+            <div class="panel centra">
+              <h6>Oil</h6>
+            </div>
+          </a>
+        </div>
+      </div>
+      <%= button_to 'Tutti i Prodotti', products_path, method: :get, class: 'button large-12 column' %>
+      <%= button_to 'Solo Prodotti in Offerta', push_path, method: :get, class: 'button large-12 column' %>
+    </fieldset>
+
+    <br>
+
+    <%= will_paginate @products %>
+    <% @products.each do |product| %>
+
+      <table class="large-12 column">
+        <tr>
+          <td class="large-3 column centra"><%= link_to (image_tag product.image_url.url(:large)), product_path(product) %></td>
+          <td class="large-9 column">
+            <h4><%= link_to product.title, product_path(product) %></h4>
+            <h5>Prezzo: <%= number_to_currency(product.price,:unit => "€ ", :separator => ",", :delimiter => ".") %></h5>
+            <h5>Disponibilità: <%= product.qnt %></h5>     
+          </td>
+        </tr>
+      </table>    
+
+    <% end %>
+  </div>
+</div>
+
+<% end %>

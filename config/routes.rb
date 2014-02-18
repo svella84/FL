@@ -1,9 +1,13 @@
 Farmland::Application.routes.draw do
 
-  resources :products
-
+  get "products/push", :to => "products#push", as: "push"
   get "static_pages/about", as: 'about'
   get "static_pages/help", as: 'help'
+
+  resources :products
+  resources :line_items
+  resources :carts
+  resources :orders
 
   devise_for :users, :controllers => { :registrations => "users" }
   devise_scope :user do

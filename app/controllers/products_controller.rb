@@ -4,7 +4,24 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @categories = Category.all
+    category = params[:category]
+    if category == "" || category == nil
+      @products = Product.where(active: true).paginate(page: params[:page], per_page: 5)
+    else
+      @products = Product.where(category_id: category, active: true).paginate(page: params[:page], per_page: 5)
+    end
+  end
+
+  def push
+    @categories = Category.all
+    category = params[:category]
+    if category == "" || category == nil
+      @products = Product.where(active: true, push: true).paginate(page: params[:page], per_page: 5)
+    else
+      @products = Product.where(category_id: category, active: true, push: true).paginate(page: params[:page], per_page: 5)
+    end
+    render "index"
   end
 
   # GET /products/1

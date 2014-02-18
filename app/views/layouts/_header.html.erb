@@ -15,8 +15,8 @@
       <ul class="left">
             <li class="divider"></li>
             <li class="active">
-              <%= link_to new_user_session_path, :method => :get do %>
-                Cassa <i class="fi-shopping-cart"></i>
+              <%= link_to cart_path(current_cart), :method => :get do %>
+                Carrello <i class="fi-shopping-cart"></i>
               <% end %>
             </li>  
             <li class="divider"></li>
@@ -38,7 +38,7 @@
             <a>CREDIT <%= number_to_currency(current_user.information.credit, unit: "€", separator: ",", delimiter: ".", format: "%n %u") %></a>
             <ul class="dropdown">
               <li><%= link_to 'Aggiungi Credito', add_credit_path %></li>
-              <li><%= link_to 'xxx' %></li>
+              <li><%= link_to 'Storico Acquisti' %></li>
             </ul>
           </li>
         </ul>

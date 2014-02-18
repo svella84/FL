@@ -36,7 +36,7 @@
  $total-columns: 12;
 
 // We use these to control various global styles
- $body-bg: #333;
+// $body-bg: #333;
  $body-font-color: #222;
  $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
  $body-font-weight: normal;
@@ -796,8 +796,8 @@
  $price-title-padding: rem-calc(15 20);
  $price-title-align: center;
  $price-title-color: #eee;
- $price-title-weight: normal;
- $price-title-size: rem-calc(16);
+ $price-title-weight: bold;
+ $price-title-size: rem-calc(32);
  $price-title-font-family: $body-font-family;
 
 // We use these to control the price styles
@@ -1128,11 +1128,11 @@
 
 // Height and margin
  $topbar-height: 50px;
- $topbar-margin-bottom: 2px;
+ $topbar-margin-bottom: 0;
 
 // Controlling the styles for the title in the top bar
  $topbar-title-weight: bold;
- $topbar-title-font-size: rem-calc(30);
+ $topbar-title-font-size: rem-calc(28);
 
 // Style the top bar dropdown elements
  $topbar-dropdown-bg: #333;
@@ -1156,12 +1156,12 @@
  $topbar-link-bg-active-hover: darken($primary-color, 5%);
  $topbar-link-font-family: $body-font-family;
 
-// $topbar-button-font-size: 0.75rem;
+ $topbar-button-font-size: 0.75rem;
 
  $topbar-dropdown-label-color: #777;
  $topbar-dropdown-label-text-transform: uppercase;
  $topbar-dropdown-label-font-weight: bold;
- $topbar-dropdown-label-font-size: rem-calc(10);
+ $topbar-dropdown-label-font-size: rem-calc(12);
  $topbar-dropdown-label-bg: #333;
 
 // Top menu icon styles
