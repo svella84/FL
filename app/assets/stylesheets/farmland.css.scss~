@@ -3,5 +3,43 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 body {
-	background: #62bd6d image-url("white.png") repeat top right !important;
+	background: image-url("white.png") repeat top right;
+	animation: colorBackground 30s infinite; /* Chrome, Firefox 16+, IE 10+, Opera 12.10+ */
+	-webkit-animation: colorBackground 30s infinite; /* Chrome, Safari 5+ */
+	-moz-animation: colorBackground 30s infinite; /* Firefox 5-15 */
+	-o-animation: colorBackground 30s infinite; /* Opera 12.00 */
 }
+
+@keyframes colorBackground {
+	  0% { background-color: #000000; color: #000000; }
+	 20% { background-color: #08ae0d; color: #08ae0d; }
+	 40% { background-color: #d47a00; color: #d47a00; }
+	 60% { background-color: #ea0d0d; color: #ea0d0d; }
+	 80% { background-color: #2217d6; color: #2217d6; }
+	100% { background-color: #000000; color: #000000; }
+}
+@-webkit-keyframes colorBackground {
+	  0% { background-color: #000000; color: #000000; }
+	 20% { background-color: #08ae0d; color: #08ae0d; }
+	 40% { background-color: #d47a00; color: #d47a00; }
+	 60% { background-color: #ea0d0d; color: #ea0d0d; }
+	 80% { background-color: #2217d6; color: #2217d6; }
+	100% { background-color: #000000; color: #000000; }
+}
+@-moz-keyframes colorBackground {
+	  0% { background-color: #000000; color: #000000; }
+	 20% { background-color: #08ae0d; color: #08ae0d; }
+	 40% { background-color: #d47a00; color: #d47a00; }
+	 60% { background-color: #ea0d0d; color: #ea0d0d; }
+	 80% { background-color: #2217d6; color: #2217d6; }
+	100% { background-color: #000000; color: #000000; }
+}
+@-o-keyframes colorBackground {
+	  0% { background-color: #000000; color: #000000; }
+	 20% { background-color: #08ae0d; color: #08ae0d; }
+	 40% { background-color: #d47a00; color: #d47a00; }
+	 60% { background-color: #ea0d0d; color: #ea0d0d; }
+	 80% { background-color: #2217d6; color: #2217d6; }
+	100% { background-color: #000000; color: #000000; }
+}
+

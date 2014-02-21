@@ -1,5 +1,5 @@
 <tr>
-  <td><%= line_item.qnt %>&times;</td>
+  <td><%= number_to_currency(line_item.qnt, :unit => "", :separator => ",", :delimiter => ".", precision: 3) %>&times;</td>
   <td><%= line_item.product.title %></td>
-  <td><%= number_to_currency(line_item.total_price) %></td>
+  <td><%= number_to_currency(line_item.total_price, :unit => "€ ", :separator => ",", :delimiter => ".") %></td>
 </tr>

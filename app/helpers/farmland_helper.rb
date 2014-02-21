@@ -9,4 +9,11 @@ module FarmlandHelper
     	end
     end
 
+    def only_admin
+      unless current_user.admin?
+        flash[:allert] = "Permesso negato"
+	redirect_to root_path
+      end
+    end
+
 end

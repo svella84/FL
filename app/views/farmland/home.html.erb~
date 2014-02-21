@@ -1,3 +1,48 @@
+<% if current_user.try(:admin?) %>
+<h1>Lista Prodotti</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Qnt</th>
+      <th>Price</th>
+      <th>Active</th>
+      <th>Push</th>
+      <th>Image url</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.category.name %></td>
+        <td><%= product.title %></td>
+        <td><%= product.description %></td>
+        <td><%= product.qnt %></td>
+        <td><%= product.price %></td>
+        <td><%= product.active %></td>
+        <td><%= product.push %></td>
+        <td><%= product.image_url %></td>
+        <td><%= link_to 'Show', product %></td>
+        <td><%= link_to 'Edit', edit_product_path(product) %></td>
+        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Product', new_product_path %>
+
+<% else %>
+
 <!-- Content Slider -->
  
 <div class="row">
@@ -95,7 +140,7 @@
     <!-- Thumbnails -->
       <% @products.each do |product| %>
 
-        <div class="large-3 small-4 columns">
+        <div class="large-4 small-4 columns">
           <%= link_to product_path(product), :method => :get do %>
             <%= image_tag product.image_url.url(:large) %>
           
@@ -111,3 +156,4 @@
     </div>
   </div>
 </div>
+<% end %>

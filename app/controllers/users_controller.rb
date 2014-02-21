@@ -1,21 +1,37 @@
 class UsersController < Devise::RegistrationsController
-  before_action :only_signed_in_user, only: [:show, :add_credit, :update_credit]
+  before_action :only_signed_in_user, only: [:show, :add_credit, :update_credit, :wishlist]
 
   def show
   end
 
-  def add_credit
+  def credit
     @info = current_user.information
   end
 
-  def update_credit
+  def add_credit
     @info = current_user.information
     if @info.add_credit(params[:information][:credit])
       flash[:success] = "Credito aggiunto correttamente!"
       redirect_to profile_path
     else
-      flash.now[:error] = "Importo non corretto!"
+      flash.now[:alert] = "Importo non corretto!"
       render :action => 'add_credit'
+    end
+  end
+
+  def wishlist
+    @wishs = Wishlist.where(user_id: current_user.id).paginate(page: params[:page], per_page: 5)
+  end
+
+  def add_wishlist
+    unless Wishlist.where(user_id: current_user.id, product_id: params[:product_id])
+      wish_item = Wishlist.new(user_id: current_user.id, product_id: params[:product_id])
+      wish_item.save
+      flash[:success] = "Prodotto inserito correttamente nella tua lista dei Desideri"
+      redirect_to root_path
+    else
+      flash[:alert] = "Prodotto gia' presente nella tua lista dei Desideri"
+      redirect_to root_path
     end
   end
 

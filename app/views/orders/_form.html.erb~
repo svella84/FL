@@ -27,19 +27,19 @@
   </div>
   <div class="field large-3 columns" >
     <%= f.label :city %>
-    <%= f.email_field :city, :value => current_user.information.city %>
+    <%= f.text_field :city, :value => current_user.information.city %>
   </div>
   <div class="field large-3 columns" >
     <%= f.label :country %>
-    <%= f.email_field :country, :value => current_user.information.country %>
+    <%= f.text_field :country, :value => current_user.information.country %>
   </div>
   <div class="field large-2 columns" >
     <%= f.label :post_code %>
-    <%= f.email_field :post_code, :value => current_user.information.post_code %>
+    <%= f.text_field :post_code, :value => current_user.information.post_code %>
   </div>
 </div>
   <div class="actions large-12 columns" >
-    <%= f.submit 'Place Order', class: 'radius button expand success' %>
+    <%= f.submit 'Place Order', class: 'radius button expand success', data: {:confirm => "Attenzione, prima di procedere con l'acquisto ti consigliamo di verificare i dati inseriti. Vuoi procedere?"} %>
   </div>
 
 <% end %>

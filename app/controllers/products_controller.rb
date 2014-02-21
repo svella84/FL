@@ -1,26 +1,26 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :only_admin, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /products
   # GET /products.json
   def index
-    @categories = Category.all
     category = params[:category]
     if category == "" || category == nil
       @products = Product.where(active: true).paginate(page: params[:page], per_page: 5)
     else
       @products = Product.where(category_id: category, active: true).paginate(page: params[:page], per_page: 5)
     end
+
+ 
+    if params[:search]
+      @products = Product.search(params[:search]).order("created_at DESC").paginate(page: params[:page], per_page: 5)
+    end
+
   end
 
   def push
-    @categories = Category.all
-    category = params[:category]
-    if category == "" || category == nil
-      @products = Product.where(active: true, push: true).paginate(page: params[:page], per_page: 5)
-    else
-      @products = Product.where(category_id: category, active: true, push: true).paginate(page: params[:page], per_page: 5)
-    end
+    @products = Product.where(active: true, push: true).paginate(page: params[:page], per_page: 5)
     render "index"
   end
 

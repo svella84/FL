@@ -1,9 +1,9 @@
 Farmland::Application.routes.draw do
 
-  get "products/push", :to => "products#push", as: "push"
   get "static_pages/about", as: 'about'
   get "static_pages/help", as: 'help'
 
+  get "products/push", :to => "products#push", as: "push"
   resources :products
   resources :line_items
   resources :carts
@@ -12,15 +12,18 @@ Farmland::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => "users" }
   devise_scope :user do
     get "users/profile", :to => "users#show", as: 'profile'
-    get "users/add_credit", :to => "users#add_credit", as: 'add_credit'
-    post "users/update_credit", :to => "users#update_credit", as: 'update_credit'
     delete "users/delete_account", :to => "users#delete_account", as: 'delete_account'
+    post "users/add_credit", :to => "users#add_credit", as: 'add_credit'
+    get "users/credit", :to => "users#credit", as: 'credit'
+    post "users/add_to_wishlist", to: "users#add_wishlist", as: "add_to_wishlist"
+    get "users/wishlist", :to => "users#wishlist", as: 'wishlist'
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'farmland#index'
+  get 'managment', :to => "farmland#managment", as: "managment"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -18,8 +18,7 @@
               <%= link_to cart_path(current_cart), :method => :get do %>
                 Carrello <i class="fi-shopping-cart"></i>
               <% end %>
-            </li>  
-            <li class="divider"></li>
+            </li> 
           </ul>    
       <!-- Right Nav Section -->
       <% if user_signed_in? %>
@@ -29,6 +28,9 @@
             <a> <%= image_tag current_user.information.image_url.url(:small), :class => 'imgheader' %> <%= current_user.information.name %> <%= current_user.information.surname %> </a>
             <ul class="dropdown">
               <li><%= link_to 'Profilo', profile_path %></li>
+              <% if current_user.try(:admin?) %>
+                <li><%= link_to 'Managment', managment_path %></li>
+              <% end %>
               <li class="divider"></li>
               <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
             </ul>
@@ -37,8 +39,10 @@
           <li class="has-dropdown">
             <a>CREDIT <%= number_to_currency(current_user.information.credit, unit: "€", separator: ",", delimiter: ".", format: "%n %u") %></a>
             <ul class="dropdown">
-              <li><%= link_to 'Aggiungi Credito', add_credit_path %></li>
-              <li><%= link_to 'xxx' %></li>
+              <li><%= link_to orders_path do %>Storico Acquisti  <i class="fi-clipboard-notes"></i> <% end %></li>
+              <li><%= link_to 'Lista dei Desideri', wishlist_path %></li>
+              <li class="divider"></li>
+              <li><%= link_to credit_path do %>Aggiungi Credito  <i class="fi-credit-card"></i> <% end %></li>
             </ul>
           </li>
         </ul>

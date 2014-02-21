@@ -10,8 +10,13 @@ class LineItemsController < ApplicationController
       flash[:success] = 'Prodotto Aggiunto con successo.'
       redirect_to @line_item.cart
     else
-      flash[:error] = @line_item
+      flash[:alert] = @line_item
       redirect_to product
     end
+  end
+
+  def destroy
+    current_cart.line_items.find(params[:id]).destroy
+    redirect_to current_cart_path
   end
 end

@@ -14,4 +14,9 @@ class LineItemsController < ApplicationController
       redirect_to product
     end
   end
+
+  def destroy
+    current_cart.line_items.find(params[:id]).destroy
+    redirect_to cart_path(current_cart)
+  end
 end

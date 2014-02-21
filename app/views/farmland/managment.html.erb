@@ -1,0 +1,106 @@
+<div class="row">
+  <div class="large-12 column">
+<dl class="tabs" data-tab>
+  <dd class="active"><a href="#panel2-1">Magazzino</a></dd>
+  <dd><a href="#panel2-2">Utenti</a></dd>
+  <dd><a href="#panel2-3">Ordini</a></dd>
+</dl>
+<div class="tabs-content">
+  <div class="content active" id="panel2-1">
+
+
+<h1>Lista Prodotti</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Qnt</th>
+      <th>Price</th>
+      <th>Active</th>
+      <th>Push</th>
+      <th>Image url</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.category.name %></td>
+        <td><%= product.title %></td>
+        <td><%= product.description %></td>
+        <td><%= product.qnt %></td>
+        <td><%= product.price %></td>
+        <td><%= product.active %></td>
+        <td><%= product.push %></td>
+        <td><%= product.image_url %></td>
+        <td><%= link_to 'Show', product %></td>
+        <td><%= link_to 'Edit', edit_product_path(product) %></td>
+        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Product', new_product_path %>
+
+
+
+  </div>
+  <div class="content" id="panel2-2">
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Title</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.information.name %></td>
+        <td><%= user.information.surname %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+  </div>
+  <div class="content" id="panel2-3">
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Title</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.id %></td>
+        <td><%= order.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+  </div>
+</div>
+  </div>
+</div>
+
+<%= link_to 'Go Home', root_path, class: 'button radius expand' %>

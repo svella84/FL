@@ -16,8 +16,8 @@
       <%= info.text_field :surname, placeholder: 'Cognome' %>
     </div>
 
-    <div class="field large-12 column"><!--la data si ordina da sola per la  in /config/locales/it.yml, altrimenti potevo usare , :order => [:day, :month, :year] -->
-      <%= info.date_select :date_of_birth, start_year: 1900, end_year: (Time.now.year-18), prompt: {day: 'Giorno', month: 'Mese', year: 'Anno'}%>
+    <div class="field date large-12 column">
+      <%= info.date_select :date_of_birth, start_year: 1900, end_year: (Time.now.year-18), :order => [:day, :month, :year] %>
     </div>
 
     <div class="field large-5 column">

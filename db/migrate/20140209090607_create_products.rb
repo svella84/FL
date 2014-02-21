@@ -4,7 +4,7 @@ class CreateProducts < ActiveRecord::Migration
       t.references :category, index: true
       t.string :title
       t.text :description
-      t.integer :qnt
+      t.decimal :qnt, :precision => 7, :scale => 3
       t.decimal :price, :precision => 10, :scale => 2
       t.boolean :active, :null => true, :default => true
       t.boolean :push, :null => false, :default => false

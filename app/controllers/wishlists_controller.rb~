@@ -1,0 +1,13 @@
+class WishlistsController < ApplicationController
+  def add
+    unless Wishlist.where(product_id: params[:product_id], user_id: current_user.id)
+      wish_item = Wishlist.new(product_id: params[:product_id], user_id: current_user.id)
+      wish_item.save
+      flash[:success] = "Prodotto inserito correttamente"
+      redirect_to root_path
+    else
+      flash[:allert] = "Prodotto gia' presente"
+      redirect_to root_path
+    end
+  end
+end

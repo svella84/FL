@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140211173253) do
+ActiveRecord::Schema.define(version: 20140220102417) do
 
   create_table "carts", force: true do |t|
     t.datetime "created_at"
@@ -48,9 +48,10 @@ ActiveRecord::Schema.define(version: 20140211173253) do
   create_table "line_items", force: true do |t|
     t.integer  "cart_id"
     t.integer  "product_id"
-    t.integer  "qnt",        default: 1
+    t.decimal  "qnt",        precision: 7, scale: 3, default: 1.0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "order_id"
   end
 
   create_table "orders", force: true do |t|
@@ -74,7 +75,7 @@ ActiveRecord::Schema.define(version: 20140211173253) do
     t.integer  "category_id"
     t.string   "title"
     t.text     "description"
-    t.integer  "qnt"
+    t.decimal  "qnt",                    precision: 7,  scale: 3
     t.decimal  "price",                  precision: 10, scale: 2
     t.boolean  "active",                                          default: true
     t.boolean  "push",                                            default: false, null: false
@@ -121,5 +122,15 @@ ActiveRecord::Schema.define(version: 20140211173253) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true
+
+  create_table "wishlists", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "wishlists", ["product_id"], name: "index_wishlists_on_product_id"
+  add_index "wishlists", ["user_id"], name: "index_wishlists_on_user_id"
 
 end
