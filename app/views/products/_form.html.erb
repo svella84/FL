@@ -10,40 +10,41 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :category_id %><br>
+<div class="row">
+  <div class="field large-3 columns">
+    <%= f.label :category_id, 'Categoria:' %><br>
     <%= f.select :category_id, Category.all.map { |c| [c.name, c.id] }, prompt: 'Seleziona una categoria' %>
   </div>
-  <div class="field">
-    <%= f.label :title %><br>
+  <div class="field large-4 columns">
+    <%= f.label :title, 'Nome Prodotto:' %><br>
     <%= f.text_field :title %>
   </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :qnt %><br>
+  <div class="field large-2 columns">
+    <%= f.label :qnt, 'Disponibilità (Kg):' %><br>
     <%= f.number_field :qnt %>
   </div>
-  <div class="field">
-    <%= f.label :price %><br>
+  <div class="field large-3 columns">
+    <%= f.label :price, 'Prezzo:' %><br>
     <%= f.text_field :price %>
   </div>
-  <div class="field">
-    <%= f.label :active %><br>
-    <%= f.check_box :active %>
+</div>
+<div class="row">
+  <div class="field large-12 columns">
+    <%= f.label :description, 'Descrizione:' %><br>
+    <%= f.text_area :description, rows:5 %>
   </div>
-  <div class="field">
-    <%= f.label :push %><br>
-    <%= f.check_box :push %>
-  </div>
-  <div class="field">
-    <%= f.label :image_url %><br>
+</div>
+<div class="row">
+  <div class="field large-9 columns">
+    <%= f.label :image_url, 'Immangine:' %><br>
     <%= f.file_field :image_url %>
   </div>
+  <div class="field large-3 columns">
+    <%= f.check_box :active %> <%= f.label :active, 'Attivo' %><br>
+    <%= f.check_box :push %> <%= f.label :push, 'In Offerta' %> 
+  </div>
+</div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Crea / Modifica", class: 'button radius large-12 small-12 extend success' %>
   </div>
 <% end %>

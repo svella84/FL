@@ -6,16 +6,18 @@
         <%= image_tag @product.image_url.url(:large) %>
         <%= form_for :line_items, url: line_items_path(:product_id => @product) do |f| %>
           <div class="panel large-12 column">
-            <div class="large-9 column">
-              <h5>Quantità Desideratà (Kg):</h5>
-	    </div>
-            <div class="large-3 column">
-              <%= f.text_field :qnt, value: 1 %>
-	    </div>
+            <div class="row">
+              <div class="large-9 column">
+                <h5>Quantità Desideratà (Kg):</h5>
+              </div>
+              <div class="large-3 column">
+                <%= f.text_field :qnt, value: 1 %>
+	      </div>
+            </div>
             <%= f.submit 'Add to Cart', class: 'button expand success' %>
             <br/>          
         <% end %>
-	    <%= link_to 'Lista dei Desideri', add_to_wishlist_path(product_id: @product.id), method: :post, class: 'button expand secondary' %>
+	<%= link_to 'Lista dei Desideri', add_to_wishlist_path(product_id: @product.id), method: :post, class: 'button expand secondary' %>
           </div>
       </div>
 

@@ -31,10 +31,17 @@
 .log_reg {
 	border-radius: 15px;
         opacity:0.6;
-
 }
 
-a {
-	text-decoration:none;
-	font-color: #234678;
+.container {
+min-height:100%;
+height:auto !important;
+height:100%;
+margin:0 auto -100px; /* margine negativo altezza footer */
+}
+
+footer {
+	background: image-url("erba.gif") repeat bottom right;
+        height:150px; /* altezza footer */
+clear:both;
 }

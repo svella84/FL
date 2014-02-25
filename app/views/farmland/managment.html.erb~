@@ -9,47 +9,48 @@
   <div class="content active" id="panel2-1">
 
 
-<h1>Lista Prodotti</h1>
-
-<table>
+<table class="large-12 small-12 column">
   <thead>
     <tr>
+      <th></th>
       <th>Category</th>
       <th>Title</th>
-      <th>Description</th>
-      <th>Qnt</th>
+      <th>Qnt (Kg//L)</th>
       <th>Price</th>
       <th>Active</th>
       <th>Push</th>
-      <th>Image url</th>
-      <th></th>
-      <th></th>
       <th></th>
     </tr>
   </thead>
 
   <tbody>
+    <%= will_paginate @products %>
     <% @products.each do |product| %>
       <tr>
+        <td><%=image_tag product.image_url.url(:thumb) %></td>
         <td><%= product.category.name %></td>
         <td><%= product.title %></td>
-        <td><%= product.description %></td>
-        <td><%= product.qnt %></td>
-        <td><%= product.price %></td>
+        <td><%= number_to_currency(product.qnt, :unit => "", :separator => ",", :delimiter => ".", precision: 3) %></td>
+        <td><%= number_to_currency(product.price, :unit => "€ ", :separator => ",", :delimiter => ".") %></td>
         <td><%= product.active %></td>
         <td><%= product.push %></td>
-        <td><%= product.image_url %></td>
-        <td><%= link_to 'Show', product %></td>
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="centra">
+          <a href="#" data-dropdown="drop1-<%= product.id %>" class="button dropdown radius tiny">Options</a><br>
+          <ul id="drop1-<%= product.id %>" data-dropdown-content class="f-dropdown">
+            <li><%= link_to 'Show', product %></li>
+            <li><%= link_to 'Edit', edit_product_path(product) %></li>
+            <li><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+          </ul>
+        </td>
       </tr>
     <% end %>
+    <%= will_paginate @products %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Product', new_product_path %>
+<%= link_to 'New Product', new_product_path, class: 'button radius expand success' %>
 
 
 
@@ -57,26 +58,81 @@
   <div class="content" id="panel2-2">
 
 
+<table class="large-12 small-12 column">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Nome</th>
+      <th>Cognome</th>
+      <th>Email</th>
+      <th>Admin</th>
+      <th>Accessi</th>
+      <th>Blocca</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= will_paginate @users %>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%=image_tag user.information.image_url.url(:thumb) %></td>
+        <td><%= user.information.name %></td>
+        <td><%= user.information.surname %></td>
+        <td><%= user.email %></td>
+        <td><%= user.admin %></td>
+        <td><%= user.sign_in_count %></td>
+        <td><%= user.locked_at %></td>
+        <td class="centra">
+          <a href="#" data-dropdown="drop2-<%= user.id %>" class="button dropdown radius tiny">Options</a><br>
+          <ul id="drop2-<%= user.id %>" data-dropdown-content class="f-dropdown">
+            <li><%= link_to 'Show', profile_path(user) %></li>
+            <li><%= link_to 'Edit' %></li>
+          </ul>
+        </td>
+      </tr>
+    <% end %>
+    <%= will_paginate @users %>
+  </tbody>
+</table>
+
 
   </div>
   <div class="content" id="panel2-3">
 
 
-<table>
+<table class="large-12 small-12 column">
   <thead>
     <tr>
-      <th>Category</th>
-      <th>Title</th>
+      <th>Id</th>
+      <th>Nome</th>
+      <th>Cognome</th>
+      <th>Costo</th>
+      <th>Creato</th>
+      <th>Stato</th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
+    <%= will_paginate @orders %>
     <% @orders.each do |order| %>
       <tr>
         <td><%= order.id %></td>
-        <td><%= order.name %></td>
+        <td><%= order.user.information.name %></td>
+        <td><%= order.user.information.surname %></td>
+        <td><%= order.expense %></td>
+        <td><%= order.created_at %></td>
+        <td><%= order.status.name %></td>
+        <td class="centra">
+          <a href="#" data-dropdown="drop3-<%= order.id %>" class="button dropdown radius tiny">Options</a><br>
+          <ul id="drop3-<%= order.id %>" data-dropdown-content class="f-dropdown">
+            <li><%= link_to 'Show', order_path(order) %></li>
+            <li><%= link_to 'Edit' %></li>
+          </ul>
+        </td>
       </tr>
     <% end %>
+    <%= will_paginate @orders %>
   </tbody>
 </table>
 
@@ -85,5 +141,3 @@
 </div>
   </div>
 </div>
-
-<%= link_to 'Go Home', root_path, class: 'button radius expand' %>

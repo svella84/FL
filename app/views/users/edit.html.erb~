@@ -17,7 +17,7 @@
     </div>
 
     <div class="field date large-12 column">
-      <%= info.date_select :date_of_birth, start_year: 1900, end_year: (Time.now.year-18), :order => [:day, :month, :year] %>
+      <%= info.date_select :date_of_birth, start_year: 1900, end_year: (Time.now.year-18), prompt: {day: 'Giorno', month: 'Mese', year: 'Anno'}, :order => [:day, :month, :year] %>
     </div>
 
     <div class="field large-5 column">
@@ -92,7 +92,7 @@
     <div class="large-12 column">
       <h4>Elimina il mio account</h4>
 
-      <h5>Non vuoi più utilizzare il nostro servizio per la creazione di campagne di raccolta fondi? Puoi eliminare il tuo account dal sistema, cancellando di conseguenza tutti i dati ad esso correlato.<br/>Se sei deciso a farlo clicca il pulsante qua sotto.</h5>
+      <h5>Non vuoi più utilizzare il nostro servizio... Puoi eliminare il tuo account dal sistema, cancellando di conseguenza tutti i dati ad esso correlato.<br/>Se sei deciso a farlo clicca il pulsante qua sotto.</h5>
 
       <%= button_to "Elimina", delete_account_path, class: 'button alert large-12 column', :data => { :confirm => "Attenzione, se prosegui il tuo profilo verrà eliminato per sempre. Vuoi procedere?" }, :method => :delete %>
     </div>

@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Farmland" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
@@ -16,20 +16,26 @@
   <body>
     <%= render 'layouts/header' %>
 
-    <div class="row">
-      <div class="small-10 small-centered large-10 large-centered columns">
-        <% flash.each do |key, value| %>
-          <div data-alert data-options="animation:slideUp;" class="alert-box <%= key %>">
-            <%= value %>
-            <a href="#" class="close">&times;</a>
-          </div>
-        <% end %>
+    <div class="conteiner">
+
+      <div class="row">
+        <div class="small-10 small-centered large-10 large-centered columns">
+          <% flash.each do |key, value| %>
+            <div data-alert data-options="animation:slideUp;" class="alert-box <%= key %>">
+              <%= value %>
+              <a href="#" class="close">&times;</a>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <%= yield %>
+     
+      <div class="down">
+        <%= render 'layouts/footer' %>
       </div>
     </div>
 
-    <%= yield %>
-
-    <%= render 'layouts/footer' %>
 
     <%= javascript_include_tag "application" %>
   </body>

@@ -1,48 +1,3 @@
-<% if current_user.try(:admin?) %>
-<h1>Lista Prodotti</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Category</th>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Qnt</th>
-      <th>Price</th>
-      <th>Active</th>
-      <th>Push</th>
-      <th>Image url</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @products.each do |product| %>
-      <tr>
-        <td><%= product.category.name %></td>
-        <td><%= product.title %></td>
-        <td><%= product.description %></td>
-        <td><%= product.qnt %></td>
-        <td><%= product.price %></td>
-        <td><%= product.active %></td>
-        <td><%= product.push %></td>
-        <td><%= product.image_url %></td>
-        <td><%= link_to 'Show', product %></td>
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Product', new_product_path %>
-
-<% else %>
-
 <!-- Content Slider -->
  
 <div class="row">
@@ -50,19 +5,19 @@
      
     <ul id="featured" data-orbit>
       <li>
-        <img src="http://placehold.it/1200x500&text=Slide Image 1" alt="slide image">
+        <img src="/system/image/contadino1.jpg" alt="slide image">
         <div class="orbit-caption">
           Caption One.
         </div>
       </li>
       <li>
-        <img src="http://placehold.it/1200x500&text=Slide Image 2" alt="slide image">
+        <img src="/system/image/frutteto.jpg" alt="slide image">
         <div class="orbit-caption">
           Caption Two.
         </div>
       </li>
       <li>
-        <img src="http://placehold.it/1200x500&text=Slide Image 3" alt="slide image">
+        <img src="/system/image/mercato.jpg" alt="slide image">
         <div class="orbit-caption">
           Caption Three.
         </div>
@@ -156,4 +111,3 @@
     </div>
   </div>
 </div>
-<% end %>
