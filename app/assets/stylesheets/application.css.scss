@@ -13,14 +13,26 @@
  *= require_tree .
  */
 
-.imgheader {
-	border-radius: 50%;
-        width: 30px;
-	height: 30px;
+@font-face {
+  font-family: first;
+  src: url(  /system/font/3.ttf  );				
 }
 
-.description {
-	text-align:justify;
+@font-face {
+  font-family: second;
+  src: url(  /system/font/5.ttf  );				
+}
+
+.char {
+	font-family: "first", Arial, Helvetica, sans-serif;
+        font-size: 42px;
+        text-shadow:3px 7px 7px #423b0b;
+}
+
+.charT {
+	font-family: "second", Arial, Helvetica, sans-serif;
+        font-size: 72px;
+        text-shadow:3px 7px 7px #191e1f;
 }
 
 .centra {
@@ -28,7 +40,13 @@
 	padding: 5.5px;
 }
 
-.log_reg {
-	border-radius: 15px;
-        opacity:0.6;
+.imgtabs {
+	-webkit-border-top-left-radius: 7px;
+	-webkit-border-bottom-right-radius: 7px;
+	-moz-border-radius-topleft: 7px;
+	-moz-border-radius-bottomright: 7px;
+	border-top-left-radius: 7px;
+	border-bottom-right-radius: 7px;
+        width: 100px;
+	height: 100px;
 }

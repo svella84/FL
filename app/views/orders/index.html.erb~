@@ -1,6 +1,6 @@
 <div class="row">
   <div class="large-12 small-12 columns">
-<h1>I tuoi Ordini</h1>
+<h1 class="centra charT">I tuoi Ordini</h1>
 
 <%= will_paginate @orders %>
     <table class="large-12 small-12 columns">
@@ -35,7 +35,7 @@
         <td><%= order.created_at.to_formatted_s(:long) %></td>
         <td><%= number_to_currency(order.expense, :unit => "€ ", :separator => ",", :delimiter => ".") %></td>
         <td><%= order.status.name %></td>
-        <td><%= link_to 'Show', order_path(order) %></td>
+        <td><%= link_to 'Show', order_path(order), class:'button radius tiny' %></td>
       </tr>
     <% end %>
   </tbody>

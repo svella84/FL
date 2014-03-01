@@ -3,30 +3,16 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .show_img_user {
-	border-radius: 50%;
-        width: 280px;
-	height: 280px;
+	-webkit-border-top-left-radius: 65px;
+	-webkit-border-bottom-right-radius: 65px;
+	-moz-border-radius-topleft: 65px;
+	-moz-border-radius-bottomright: 65px;
+	border-top-left-radius: 65px;
+	border-bottom-right-radius: 65px;
 }
 
-//giorno
-#user_information_attributes_date_of_birth_3i{
-	display: inline;
-	min-width:   150px;
-	width: 20%;
+.log_reg {
+	border-radius: 15px;
+        opacity:0.6;
+
 }
-
-//mese
-#user_information_attributes_date_of_birth_2i{
-	display: inline;
-	min-width:   150px;
-	width: 39.5%;
-}
-
-//anno
-#user_information_attributes_date_of_birth_1i{
-	display: inline;
-	min-width:   150px;
-	width: 39.5%;
-}
-
-

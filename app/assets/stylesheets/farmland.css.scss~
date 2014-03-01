@@ -54,15 +54,11 @@ body {
 	min-height:100%;
 	height:auto !important;
 	height:100%;
-	margin:0 auto -200px; /* margine negativo altezza footer */
+	margin:0 auto -230px; /* margine negativo altezza footer */
 }
 
 footer {
 	background: image-url("spighe.png") repeat bottom right;
-        height:200px; /* altezza footer */
+        height:230px; /* altezza footer */
         clear:both;
-}
-
-.prova {
-	background: none !important;
 }

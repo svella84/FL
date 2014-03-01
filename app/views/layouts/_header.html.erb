@@ -28,24 +28,25 @@
           <li class="has-dropdown">
             <a> <%= image_tag current_user.information.image_url.url(:small), :class => 'imgheader' %> <%= current_user.information.name %> <%= current_user.information.surname %> </a>
             <ul class="dropdown">
-              <li><%= link_to 'Profilo', profile_path %></li>
+              <li><%= link_to profile_path do %><i class="fi-torsos-female-male"> Profilo</i><% end %></li>
               <% if current_user.try(:admin?) %>
-                <li><%= link_to 'Managment', managment_path %></li>
-              <% end %>
+                <li><%= link_to managment_path do %><i class="fi-torso-business"> Managment</i><% end %></li>
+              <% end %> 
               <li class="divider"></li>
-              <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
+              <li><%= link_to destroy_user_session_path, :method => :delete do %><i class="fi-power"> Sign Out</i><% end %></li>
             </ul>
           </li>
           <li class="divider"></li>
           <li class="has-dropdown">
             <a>CREDIT <%= number_to_currency(current_user.information.credit, unit: "€", separator: ",", delimiter: ".", format: "%n %u") %></a>
             <ul class="dropdown">
-              <li><%= link_to orders_path do %>Storico Acquisti  <i class="fi-clipboard-notes"></i> <% end %></li>
-              <li><%= link_to 'Lista dei Desideri', wishlist_path %></li>
+              <li><%= link_to orders_path do %><i class="fi-clipboard-notes"> Storico Acquisti</i><% end %></li>
+              <li><%= link_to wishlist_path do %><i class="fi-list-thumbnails"> Lista dei Desideri</i><% end %></li>
               <li class="divider"></li>
-              <li><%= link_to credit_path do %>Aggiungi Credito  <i class="fi-credit-card"></i> <% end %></li>
+              <li><%= link_to credit_path do %><i class="fi-credit-card"> Aggiungi Credito</i><% end %></li>
             </ul>
           </li>
+          <li class="divider"></li>  
         </ul>
         <% else %>
           <ul class="right">

@@ -2,10 +2,28 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.show_img_user {
-	border-radius: 50%;
-        width: 280px;
-	height: 280px;
+.imgheader {
+	-webkit-border-top-left-radius: 7px;
+	-webkit-border-bottom-right-radius: 7px;
+	-moz-border-radius-topleft: 7px;
+	-moz-border-radius-bottomright: 7px;
+	border-top-left-radius: 7px;
+	border-bottom-right-radius: 7px;
+        width: 30px;
+	height: 30px;
 }
 
+.show_img_user {
+	-webkit-border-top-left-radius: 65px;
+	-webkit-border-bottom-right-radius: 65px;
+	-moz-border-radius-topleft: 65px;
+	-moz-border-radius-bottomright: 65px;
+	border-top-left-radius: 65px;
+	border-bottom-right-radius: 65px;
+}
 
+.log_reg {
+	border-radius: 15px;
+        opacity:0.6;
+
+}

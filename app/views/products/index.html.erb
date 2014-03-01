@@ -1,6 +1,6 @@
 <div class="row">
   <div class="large-12 small-12 columns">
-    <h1>Lista Prodotti</h1>
+    <h1 class="centra charT">Lista Prodotti</h1>
 
     <fieldset>
       <div class="row">
@@ -63,38 +63,39 @@
           <div class="large-10 small-9 columns">
             <%= text_field_tag :search, params[:search], placeholder: "Search Products" %>
           </div>
-          <!-- In order to have the "search" icon int the button, we need to use plain HTML instead of using a Rails form helper -->
           <div class="large-2 small-3 columns">
             <button class="postfix button expand" type="submit">Search <i class="fi-magnifying-glass"></i></button>
           </div>
         </div>
       <% end %>
       
-      <%= button_to 'Tutti i Prodotti', products_path, method: :get, class: 'button large-12 column' %>
-      <%= button_to  push_path, method: :get, class: 'button large-12 column' do %>
+      <%= button_to 'Tutti i Prodotti', products_path, method: :get, class: 'button radius expand' %>
+      <%= button_to  push_path, method: :get, class: 'button radius expand' do %>
         <i class="fi-burst-sale"></i> Solo Prodotti in Offerta <i class="fi-burst-sale"></i>
       <% end %>
 
     </fieldset>
 
-    <br>
 
-    <%= will_paginate @products %>
+    <%= foundation_paginate @products %>
     <% @products.each do |product| %>
-
       <table class="large-12 column">
         <tr>
           <td class="large-3 column centra"><%= link_to (image_tag product.image_url.url(:large)), product_path(product) %></td>
-          <td class="large-9 column">
+          <td class="large-7 column">
             <h4><%= link_to product.title, product_path(product) %></h4>
             <h5>Prezzo: <%= number_to_currency(product.price,:unit => "€ ", :separator => ",", :delimiter => ".") %></h5>
             <h5>Disponibilità (kg): <%= number_to_currency(product.qnt, :unit => "", :separator => ",", :delimiter => ".", precision: 3) %></h5>     
           </td>
+          <% if product.push? %>
+            <td class="large-2 column centra"><i class="fi-burst-sale size-72 right"></i></td>
+          <% else %>
+            <td class="large-2 column centra"></td>
+          <% end %>
         </tr>
       </table>    
-
     <% end %>
-    <%= will_paginate @products %>
+    <%= foundation_paginate @products %>
   </div>
 </div>
 

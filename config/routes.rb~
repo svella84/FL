@@ -1,4 +1,5 @@
 Farmland::Application.routes.draw do
+  post "admins/next_status", :to => "admins#next_status", as: "next_status"
 
   get "static_pages/about", as: 'about'
   get "static_pages/help", as: 'help'
@@ -9,21 +10,29 @@ Farmland::Application.routes.draw do
   resources :carts
   resources :orders
 
+  
+  get 'managment', :to => "admins#managment", as: "managment"
+
   devise_for :users, :controllers => { :registrations => "users" }
   devise_scope :user do
+    get "users/admin_profile", :to => "admins#show", as: "admin_profile" 
+    post "users/mod_admin", :to => "admins#mod_user_admin", as: "admin_mod" 
+    post "users/lock_user", :to => "admins#mod_user_lock", as: "lock_mod" 
     get "users/profile", :to => "users#show", as: 'profile'
     delete "users/delete_account", :to => "users#delete_account", as: 'delete_account'
     post "users/add_credit", :to => "users#add_credit", as: 'add_credit'
     get "users/credit", :to => "users#credit", as: 'credit'
-    post "users/add_to_wishlist", to: "users#add_wishlist", as: "add_to_wishlist"
+    post "users/add_to_wishlist", to: "users#add_to_wishlist", as: "add_to_wishlist"
     get "users/wishlist", :to => "users#wishlist", as: 'wishlist'
+    delete "users/delete_to_wishlist", :to => "users#delete_to_wishlist", as: 'delete_to_wishlist'
   end
+
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'farmland#index'
-  get 'managment', :to => "farmland#managment", as: "managment"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

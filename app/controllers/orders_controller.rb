@@ -33,7 +33,7 @@ class OrdersController < ApplicationController
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
         flash[:success] = "Ordine eseguito con successo"
-        redirect_to root_path
+        redirect_to orders_path
       else
         render "new"
       end
@@ -41,8 +41,6 @@ class OrdersController < ApplicationController
       flash[:alert] = "Non puoi procedere con l'acquisto credito insufficente"
       redirect_to add_credit_path
     end
-   
-
   end
 
   def index 

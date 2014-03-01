@@ -8,17 +8,25 @@ class Product < ActiveRecord::Base
   has_attached_file :image_url, :styles => { :large => "980x640#", :medium => "300x196#", :thumb => "100x100#", :small => "30x30#" }, :default_url => "user.jpg"
   validates_attachment_content_type :image_url, :content_type => /\Aimage\/.*\Z/
 
+  validates :title, :category_id, :description, :qnt, :price, presence: true
+
+  validates :title, uniqueness: { case_sensitive: false }
+  validates_length_of :title, minimum: 4, maximum: 255
+
+  validates :qnt, :price, numericality: { greater_than_or_equal_to: 0.01 }
+
+
   # non ci sono elementi che fanno riferimento a questo prodotto
   def ensure_not_referenced_by_any_line_item
     if line_items.count.zero?
       return true
     else
-      errors.add(:base, 'Line Items present' )
+      errors.add(:base, 'Line Items present')
       return false
     end
   end
 
-  # It returns the articles whose titles contain one or more words that form the query
+  # It returns the products whose titles contain one or more words that form the query
   def self.search(query)
     # where(:title, query) -> This would return an exact match of the query
     where("title like ?", "%#{query}%") 

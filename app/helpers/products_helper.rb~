@@ -1,0 +1,10 @@
+module ProductsHelper
+
+  def product_active
+    unless product.active?
+      flash[:allert] = "Permesso negato"
+      redirect_to root_path
+    end
+  end
+
+end

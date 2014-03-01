@@ -1,7 +1,8 @@
 class UsersController < Devise::RegistrationsController
-  before_action :only_signed_in_user, only: [:show, :credit, :add_credit, :wishlist, :add_wishlist]
+  before_action :only_signed_in_user, only: [:show, :credit, :add_credit, :wishlist, :add_to_wishlist, :delete_to_wishlist]
 
   def show
+    @user = User.find(current_user.id)
   end
 
   def credit
@@ -20,10 +21,10 @@ class UsersController < Devise::RegistrationsController
   end
 
   def wishlist
-    @wishs = Wishlist.where(user_id: current_user.id).paginate(page: params[:page], per_page: 5)
+    @wishs = Wishlist.where(user_id: current_user.id).order("created_at DESC").paginate(page: params[:page], per_page: 5)
   end
 
-  def add_wishlist
+  def add_to_wishlist
     if Wishlist.where(user_id: current_user.id, product_id: params[:product_id]).empty?
       wish_item = Wishlist.new( user_id: current_user.id, product_id: params[:product_id])
       wish_item.save
@@ -33,6 +34,12 @@ class UsersController < Devise::RegistrationsController
       flash[:alert] = "Prodotto gia' presente nella tua lista dei Desideri"
       redirect_to root_path
     end
+  end
+
+  def delete_to_wishlist
+    Wishlist.destroy_all(user_id: current_user.id, product_id: params[:product_id])
+    flash[:success] = "Prodotto eliminato correttamente dalla tua lista dei Desideri"
+    redirect_to wishlist_path   
   end
 
   def delete_account

@@ -1,8 +1,8 @@
 <div class="row">
   <div class="large-12 column">
-    <h1>Aggiunta Credito</h1>
+    <h1 class="centra">Aggiunta Credito</h1>
 
-    <%= form_for(:information, url: update_credit_path) do |f| %>
+    <%= form_for(:information, url: add_credit_path) do |f| %>
       <% @info.errors.any? do %>
         <ul>
           <% @info.errors.full_messages.each do |msg| %>
@@ -12,7 +12,7 @@
       <% end %>
 
       <%= f.text_field :credit, :placeholder => 'Denaro...' %>
-      <%= f.submit 'Aggiungi credito', class: 'button small-12 large-12 columns' %>
+      <%= f.submit 'Aggiungi credito', class: 'button radius expand' %>
 
     <% end %>
   </div>

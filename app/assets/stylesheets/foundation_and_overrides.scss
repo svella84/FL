@@ -727,35 +727,35 @@
 
 // Pagination
 
-// $include-html-nav-classes: $include-html-classes;
+ $include-html-nav-classes: $include-html-classes;
 
 // We use these to control the pagination container
-// $pagination-height: rem-calc(24);
-// $pagination-margin: rem-calc(-5);
+ $pagination-height: rem-calc(24);
+ $pagination-margin: rem-calc(5 15);
 
 // We use these to set the list-item properties
 // $pagination-li-float: $default-float;
-// $pagination-li-height: rem-calc(24);
-// $pagination-li-font-color: #222;
-// $pagination-li-font-size: rem-calc(14);
-// $pagination-li-margin: rem-calc(5);
+ $pagination-li-height: rem-calc(24);
+ $pagination-li-font-color: #222;
+ $pagination-li-font-size: rem-calc(14);
+ $pagination-li-margin: rem-calc(5);
 
 // We use these for the pagination anchor links
-// $pagination-link-pad: rem-calc(1 10 1);
-// $pagination-link-font-color: #999;
-// $pagination-link-active-bg: scale-color(#fff, $lightness: -10%);
+ $pagination-link-pad: rem-calc(1 10 1);
+ $pagination-link-font-color: #999;
+ $pagination-link-active-bg: scale-color(#fff, $lightness: -10%);
 
 // We use these for disabled anchor links
-// $pagination-link-unavailable-cursor: default;
-// $pagination-link-unavailable-font-color: #999;
-// $pagination-link-unavailable-bg-active: transparent;
+ $pagination-link-unavailable-cursor: default;
+ $pagination-link-unavailable-font-color: #999;
+ $pagination-link-unavailable-bg-active: transparent;
 
 // We use these for currently selected anchor links
-// $pagination-link-current-background: $primary-color;
-// $pagination-link-current-font-color: #fff;
-// $pagination-link-current-font-weight: bold;
-// $pagination-link-current-cursor: default;
-// $pagination-link-current-active-bg: $primary-color;
+ $pagination-link-current-background: $primary-color;
+ $pagination-link-current-font-color: #fff;
+ $pagination-link-current-font-weight: bold;
+ $pagination-link-current-cursor: default;
+ $pagination-link-current-active-bg: $primary-color;
 
 // Panels
 
@@ -814,7 +814,7 @@
  $price-bg: #fff;
  $price-desc-color: #777;
  $price-desc-padding: rem-calc(15);
- $price-desc-align: center;
+ $price-desc-align: justify;
  $price-desc-font-size: rem-calc(12);
  $price-desc-weight: normal;
  $price-desc-line-height: 1.4;
@@ -1057,20 +1057,20 @@
 // TABS
 //
 
-// $include-html-tabs-classes: $include-html-classes;
+ $include-html-tabs-classes: $include-html-classes;
 
-// $tabs-navigation-padding: rem-calc(16);
-// $tabs-navigation-bg-color: #efefef  ;
-// $tabs-navigation-active-bg-color: #fff;
-// $tabs-navigation-hover-bg-color: scale-color($tabs-navigation-bg-color, $lightness: -6%);
-// $tabs-navigation-font-color: #222;
-// $tabs-navigation-font-size: rem-calc(16);
-// $tabs-navigation-font-family: $body-font-family;
+ $tabs-navigation-padding: rem-calc(16);
+ $tabs-navigation-bg-color: #efefef  ;
+ $tabs-navigation-active-bg-color: #fff;
+ $tabs-navigation-hover-bg-color: scale-color($tabs-navigation-bg-color, $lightness: -6%);
+ $tabs-navigation-font-color: #222;
+ $tabs-navigation-font-size: rem-calc(20);
+ $tabs-navigation-font-family: $body-font-family;
 
-// $tabs-content-margin-bottom: rem-calc(24);
-// $tabs-content-padding: $column-gutter/2;
+ $tabs-content-margin-bottom: rem-calc(26);
+ $tabs-content-padding: $column-gutter/2;
 
-// $tabs-vertical-navigation-margin-bottom: 1.25rem;
+ $tabs-vertical-navigation-margin-bottom: 1.25rem;
 
 //
 // THUMBNAILS

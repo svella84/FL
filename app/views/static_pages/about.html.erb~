@@ -1,11 +1,14 @@
 <div class="row">
   <div class="large-12 columns">
-    <h1>About</h1>
+    <h1 class="centra">About</h1>
 
 
-    <p>HeartFiller è un sito che si prefigge l'obiettivo di creare campagne per la raccolta fondi. Crediamo fermamente che l'etica sia la chiave di volta per cambiare il mondo cosi come l'abbiamo conosciuto fino ad ora: per questo motivo ogni utente che effettua una donazione puo' vedere come vengono spesi i propri soldi.
-<br>
-    <strong>Sii tu stesso il cambiamento che vorresti vedere nel mondo</strong>
+    <p>è un sito che si prefigge l'obiettivo di creare campagne per la raccolta fondi. 
+       Crediamo fermamente che l'etica sia la chiave di volta per cambiare il mondo cosi 
+       come l'abbiamo conosciuto fino ad ora: per questo motivo ogni utente che effettua 
+       una donazione puo' vedere come vengono spesi i propri soldi.
+       <br>
+       <strong>Sii tu stesso il cambiamento che vorresti vedere nel mondo</strong>
     </p>
 
   </div>

@@ -1,8 +1,9 @@
 <div class="row">
   <div class="large-12 columns">
     <fieldset class="panel">
-      <legend>Please Enter Your Details</legend>
+      <legend><h4>Perfavore insersci i dettagli della spedizione.</h4></legend>
       <%= render 'form' %>
+      <p>Procedere dopo aver verificato che i dati inseriti siano corretti.</p>
     </fieldset>
   </div>
 </div>

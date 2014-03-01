@@ -1,13 +1,18 @@
 <!-- Footer -->
   <footer>
-      <div class="row prova">
+<div class="row">
+        <div class="large-12 small-12 columns">
+<hr/>
+        </div>
+      </div>
+      <div class="row">
         <div class="large-7 small-7 columns">
           <strong>© Realizzato da Salvatore Vella.</strong>
         </div>
         <div class="large-5 small-5 columns">
           <ul class="inline-list right">
-            <li><strong><%= link_to 'Help', help_path %></strong></li>
-            <li><strong><%= link_to 'About', about_path %></strong></li>
+            <li><%= link_to 'Help', help_path %></li>
+            <li><%= link_to 'About', about_path %></li>
           </ul>
         </div>
       </div>

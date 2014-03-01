@@ -30,12 +30,10 @@
       </div>
 
       <%= yield %>
-     
-      <div class="down">
-        <%= render 'layouts/footer' %>
-      </div>
+
     </div>
 
+    <%= render 'layouts/footer' %>
 
     <%= javascript_include_tag "application" %>
   </body>

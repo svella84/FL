@@ -2,15 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-html {
-height:100%;
-    margin: 0;
-    padding: 0;
-}
-
 body {
 	background: image-url("white.png") repeat top right;
-        height:100%;
 	animation: colorBackground 30s infinite; /* Chrome, Firefox 16+, IE 10+, Opera 12.10+ */
 	-webkit-animation: colorBackground 30s infinite; /* Chrome, Safari 5+ */
 	-moz-animation: colorBackground 30s infinite; /* Firefox 5-15 */
@@ -54,7 +47,7 @@ body {
 	min-height:100%;
 	height:auto !important;
 	height:100%;
-	margin:0 auto -230px; /* margine negativo altezza footer */
+	margin:0;
 }
 
 footer {
