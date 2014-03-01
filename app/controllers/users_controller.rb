@@ -16,7 +16,7 @@ class UsersController < Devise::RegistrationsController
       redirect_to profile_path
     else
       flash.now[:alert] = "Importo non corretto!"
-      render :action => 'add_credit'
+      render :action => 'credit'
     end
   end
 

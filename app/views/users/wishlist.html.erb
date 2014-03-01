@@ -2,12 +2,18 @@
   <div class="large-12 small-12 columns">
 <h1 class="centra charT">La lista dei tuoi Desideri</h1>
 
+</div>
+</div>
+
+<div class="row">
+  <div class="large-12 column">
+
    <%= foundation_paginate @wishs %>
     <% @wishs.each do |wish| %>
 
       <table class="large-12 column">
         <tr>
-          <td class="large-3 column centra"><%= link_to (image_tag wish.product.image_url.url(:large)), product_path(wish.product) %></td>
+          <td class="large-3 column centra"><%= link_to (image_tag wish.product.image_url.url(:medium)), product_path(wish.product) %></td>
           <td class="large-6 column">
             <h4><%= link_to wish.product.title, product_path(wish.product) %></h4>
             <h5>Prezzo: <%= number_to_currency(wish.product.price,:unit => "€ ", :separator => ",", :delimiter => ".") %></h5>

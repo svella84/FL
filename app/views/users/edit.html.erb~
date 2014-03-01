@@ -1,6 +1,6 @@
 <div class="row">
   <div class="large-12 column">
-    <h1 class="centra">Modifica profilo</h1>
+    <h1 class="centra charT">Modifica profilo</h1>
   </div>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
@@ -16,7 +16,7 @@
       <%= info.text_field :surname, placeholder: 'Cognome' %>
     </div>
 
-    <div class="field date large-12 column">
+    <div class="field date large-4 column inline">
       <%= info.date_select :date_of_birth, start_year: 1900, end_year: (Time.now.year-18), prompt: {day: 'Giorno', month: 'Mese', year: 'Anno'}, :order => [:day, :month, :year] %>
     </div>
 

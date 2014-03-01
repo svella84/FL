@@ -1,6 +1,5 @@
 class OrdersController < ApplicationController
   before_action :only_signed_in_user
-  before_action :only_admin[]
 
   def new
     @cart = current_cart
@@ -50,7 +49,6 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @line_items = @order.line_items
   end
 
   private

@@ -1,12 +1,14 @@
 <div class="row">
   <div class="large-12 column">
-    <h1 class="centra">Profilo di <%= @user.information.name.capitalize + " " + @user.information.surname.capitalize %></h1>    
+    <h1 class="centra charT">Profilo di <%= @user.information.name.capitalize + " " + @user.information.surname.capitalize %></h1>    
 
     <div class="large-5 column centra">
       <%= image_tag @user.information.image_url.url(:large), class:'show_img_user' %>
     </div>
 
+
   <div class="large-7 column">
+<div class="row">
     <table class="large-12 column">
       <tr>
          <td><h5>E-mail</h5></td>
@@ -41,9 +43,13 @@
     <% if current_user? %>
       <%= button_to 'Modifica', edit_user_registration_path, method: :get, class: 'button radius expand' %>
     <% end %>
-   
+
+  </div>  
   </div>
 
+    <% if current_user.admin? %>
+      <%= button_to 'Managment', managment_path, method: :get, class: 'button radius expand secondary' %>
+    <% end %>
 
 </div>
 

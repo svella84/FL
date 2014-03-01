@@ -7,20 +7,20 @@ class ProductsController < ApplicationController
   def index
     category = params[:category]
     if category == "" || category == nil
-      @products = Product.where(active: true).order("created_at DESC").paginate(page: params[:page], per_page: 5)
+      @products = Product.where(active: true).order("created_at DESC").paginate(page: params[:page], per_page: 10)
     else
-      @products = Product.where(category_id: category, active: true).order("created_at DESC").paginate(page: params[:page], per_page: 5)
+      @products = Product.where(category_id: category, active: true).order("created_at DESC").paginate(page: params[:page], per_page: 10)
     end
 
  
     if params[:search]
-      @products = Product.where(active: true).search(params[:search]).order("created_at DESC").paginate(page: params[:page], per_page: 5)
+      @products = Product.where(active: true).search(params[:search]).order("created_at DESC").paginate(page: params[:page], per_page: 10)
     end
 
   end
 
   def push
-    @products = Product.where(active: true, push: true).order("created_at DESC").paginate(page: params[:page], per_page: 5)
+    @products = Product.where(active: true, push: true).order("created_at DESC").paginate(page: params[:page], per_page: 10)
     render "index"
   end
 

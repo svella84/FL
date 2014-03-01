@@ -1,5 +1,4 @@
 Farmland::Application.routes.draw do
-  post "admins/next_status", :to => "admins#next_status", as: "next_status"
 
   get "static_pages/about", as: 'about'
   get "static_pages/help", as: 'help'
@@ -10,7 +9,7 @@ Farmland::Application.routes.draw do
   resources :carts
   resources :orders
 
-  
+  post "admins/next_status", :to => "admins#next_status", as: "next_status"
   get 'managment', :to => "admins#managment", as: "managment"
 
   devise_for :users, :controllers => { :registrations => "users" }

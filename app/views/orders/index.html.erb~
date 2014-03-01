@@ -2,20 +2,21 @@
   <div class="large-12 small-12 columns">
 <h1 class="centra charT">I tuoi Ordini</h1>
 
-<%= will_paginate @orders %>
+<%= foundation_paginate @orders %>
     <table class="large-12 small-12 columns">
         <thead>
     <tr>
-      <th colspan="6" class="centra">Info Spedizione</th>
-      <th colspan="3" class="centra">Info Ordine</th>
+      <th colspan="6" class="centra show-for-large-up">Info Spedizione</th>
+      <th colspan="4" class="centra">Info Ordine</th>
     </tr>
     <tr>
-      <th>Name</th>
-      <th>Surname</th>
-      <th>Address</th>
-      <th>City</th>
-      <th>Country</th>
-      <th>Post Code</th>
+      <th class="show-for-large-up">Name</th>
+      <th class="show-for-large-up">Surname</th>
+      <th class="show-for-large-up">Address</th>
+      <th class="show-for-large-up">City</th>
+      <th class="show-for-large-up">Country</th>
+      <th class="show-for-large-up">Post Code</th>
+      <th>Id</th>
       <th>Create</th>
       <th>Costo</th>
       <th>Stato</th>
@@ -26,12 +27,13 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td><%= order.name %></td>
-        <td><%= order.surname %></td>
-        <td><%= order.andress %></td>
-        <td><%= order.city %></td>
-        <td><%= order.country %></td>
-        <td><%= order.post_code %></td>
+        <td class="show-for-large-up"><%= order.name %></td>
+        <td class="show-for-large-up"><%= order.surname %></td>
+        <td class="show-for-large-up"><%= order.andress %></td>
+        <td class="show-for-large-up"><%= order.city %></td>
+        <td class="show-for-large-up"><%= order.country %></td>
+        <td class="show-for-large-up"><%= order.post_code %></td>
+        <td><%= order.id %></td>
         <td><%= order.created_at.to_formatted_s(:long) %></td>
         <td><%= number_to_currency(order.expense, :unit => "€ ", :separator => ",", :delimiter => ".") %></td>
         <td><%= order.status.name %></td>
@@ -40,7 +42,7 @@
     <% end %>
   </tbody>
     </table>
-<%= will_paginate @orders %>
+<%= foundation_paginate @orders %>
 
 </div>
 </div>

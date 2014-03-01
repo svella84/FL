@@ -12,31 +12,31 @@
   <% end %>
 <div class="row">
   <div class="field large-3 columns">
-    <%= f.label :category_id, 'Categoria:' %><br>
+    <%= f.label :category_id, 'Categoria:' %>
     <%= f.select :category_id, Category.all.map { |c| [c.name, c.id] }, prompt: 'Seleziona una categoria' %>
   </div>
   <div class="field large-4 columns">
-    <%= f.label :title, 'Nome Prodotto:' %><br>
+    <%= f.label :title, 'Nome Prodotto:' %>
     <%= f.text_field :title %>
   </div>
   <div class="field large-2 columns">
-    <%= f.label :qnt, 'Disponibilità (Kg):' %><br>
+    <%= f.label :qnt, 'Disponibilità (Kg):' %>
     <%= f.number_field :qnt %>
   </div>
   <div class="field large-3 columns">
-    <%= f.label :price, 'Prezzo:' %><br>
+    <%= f.label :price, 'Prezzo:' %>
     <%= f.text_field :price %>
   </div>
 </div>
 <div class="row">
   <div class="field large-12 columns">
-    <%= f.label :description, 'Descrizione:' %><br>
+    <%= f.label :description, 'Descrizione:' %>
     <%= f.text_area :description, rows:5 %>
   </div>
 </div>
 <div class="row">
   <div class="field large-9 columns">
-    <%= f.label :image_url, 'Immangine:' %><br>
+    <%= f.label :image_url, 'Immangine:' %>
     <%= f.file_field :image_url %>
   </div>
   <div class="field large-3 columns">

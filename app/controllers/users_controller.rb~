@@ -14,14 +14,11 @@ class UsersController < Devise::RegistrationsController
     if @info.add_credit(params[:information][:credit])
       flash[:success] = "Credito aggiunto correttamente!"
       redirect_to profile_path
-    else
-      flash.now[:alert] = "Importo non corretto!"
-      render :action => 'add_credit'
     end
   end
 
   def wishlist
-    @wishs = Wishlist.where(user_id: current_user.id).paginate(page: params[:page], per_page: 5)
+    @wishs = Wishlist.where(user_id: current_user.id).order("created_at DESC").paginate(page: params[:page], per_page: 5)
   end
 
   def add_to_wishlist

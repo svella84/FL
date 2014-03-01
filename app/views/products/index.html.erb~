@@ -75,30 +75,30 @@
       <% end %>
 
     </fieldset>
+</div>
+</div>
 
-
+<div class="row" data-equalizer>
+  <div class="large-12 column">
     <%= foundation_paginate @products %>
     <% @products.each do |product| %>
-      <table class="large-12 column">
+      <table class="large-12 small-6 column" data-equalizer-watch>
         <tr>
-          <td class="large-3 column centra"><%= link_to (image_tag product.image_url.url(:large)), product_path(product) %></td>
-          <td class="large-7 column">
+          <td class="large-4 small-12 column centra"><%= link_to (image_tag product.image_url.url(:medium)), product_path(product) %></td>
+          <td class="large-6 small-8 column">
             <h4><%= link_to product.title, product_path(product) %></h4>
             <h5>Prezzo: <%= number_to_currency(product.price,:unit => "€ ", :separator => ",", :delimiter => ".") %></h5>
             <h5>Disponibilità (kg): <%= number_to_currency(product.qnt, :unit => "", :separator => ",", :delimiter => ".", precision: 3) %></h5>     
           </td>
           <% if product.push? %>
-            <td class="large-2 column centra"><i class="fi-burst-sale size-72 right"></i></td>
+            <td class="large-2 small-4 column"><i class="fi-burst-sale size-72 right"></i></td>
           <% else %>
-            <td class="large-2 column centra"></td>
+            <td class="large-2 small-4 column"></td>
           <% end %>
         </tr>
       </table>    
     <% end %>
-<div class="centra">
     <%= foundation_paginate @products %>
-</div>
-<br/>
   </div>
 </div>
 

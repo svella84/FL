@@ -1,7 +1,46 @@
-<div class="row">
+<div class="row" data-equalizer>
   <div class="large-12 small-12 columns">
-    <table class="large-12 small-12 columns">
-        <captions><h1 class="centra charT">Contenuto dell'Ordine con id: <%= @order.id %></h1></caption>
+
+    <h1 class="centra charT">Info dell'Ordine <%= @order.id %></h1>
+
+
+    <table class="large-5 column" data-equalizer-watch>
+      <tr>
+         <td><h5>User Id</h5></td>
+         <td><h6><%= @order.user.id %><h6></td> 
+      </tr>
+      <tr>
+         <td><h5>E-mail</h5></td>
+         <td><h6><%= @order.user.email %><h6></td> 
+      </tr>
+      <tr>
+         <td><h5>Name</h5></td>
+         <td><h6><%= @order.name %><h6></td> 
+      </tr>
+      <tr>
+         <td><h5>Surname</h5></td>
+         <td><h6><%= @order.surname %><h6></td> 
+      </tr>
+      <tr>
+         <td><h5>Indirizzo</h5></td>
+         <td><h6><%= @order.andress %><h6></td> 
+      </tr>
+      <tr>
+         <td><h5>Città</h5></td>
+         <td><h6><%= @order.city %><h6></td> 
+      </tr>
+      <tr>
+         <td><h5>Provincia</h5></td>
+         <td><h6><%= @order.country %><h6></td> 
+      </tr>
+      <tr>
+         <td><h5>CAP</h5></td>
+         <td><h6><%= @order.post_code %><h6></td> 
+      </tr>
+    </table>
+
+
+    <table class="large-7 columns" data-equalizer-watch>
         <thead>
       <tr>
          <th></th>
@@ -14,7 +53,7 @@
    <tbody>
      <% for item in @order.line_items %>
         <tr>
-          <td><%= image_tag item.product.image_url.url(:thumb) %></td>
+          <td><%= image_tag item.product.image_url.url(:thumb), :class => 'imgtabs' %></td>
           <td><%= number_to_currency(item.qnt,:unit => "", :separator => ",", :delimiter => ".", precision: 3) %></td>
           <td><%= number_to_currency(item.product.price, :unit => "€ ", :separator => ",", :delimiter => ".") %></td>
           <td><%= item.product.title %></td>
@@ -30,7 +69,12 @@
 
     </table>
 
-    <%= link_to 'Torna alla Lista degli Ordini', orders_path, class: 'radius button expand' %>
+    <% if current_user? %>
+      <%= link_to 'Torna alla Lista degli Ordini', orders_path, class: 'radius button expand' %>
+    <% end %>
+    <% if current_user.admin? %>
+      <%= button_to 'Go to Managment', managment_path, method: :get, class: 'button radius expand secondary' %>
+    <% end %>
      	
 
 </div>

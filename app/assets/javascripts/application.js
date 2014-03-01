@@ -13,8 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
-//= require turbolinks
-//= require_tree .
 
 $(function(){ $(document).foundation({
   orbit: {
@@ -28,3 +26,7 @@ $(function(){ $(document).foundation({
     swipe: true,
   }
 }); });
+
+//= require turbolinks
+//= require_tree .
+

@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="large-12 column">
+  <div class="large-12 columns">
 <dl class="tabs" data-tab>
   <dd class="active"><a href="#panel1-1">Magazzino</a></dd>
   <dd><a href="#panel1-2">Utenti</a></dd>
@@ -7,6 +7,14 @@
 </dl>
 <div class="tabs-content">
   <div class="content active" id="panel1-1">
+<div class="row">
+<ul class="button-group radius right">
+  <li><%= link_to 'Attivi', managment_path, method: :get, class: 'button' %></li>
+  <li><%= link_to 'Push', managment_path, method: :get, class: 'button' %></li>
+  <li><%= link_to 'Non Attivi', managment_path, method: :get, class: 'button' %></li>
+  <li><%= link_to 'Tutti i Prodotti', managment_path, method: :get, class: 'button' %></li>
+</ul>
+</div>
 
 <%= form_tag(managment_path, :method => "get", id: "search-form") do %>
         <div class="row collapse">
@@ -19,9 +27,7 @@
         </div>
       <% end %>
 
-<%= button_to 'Tutti i Prodotti', managment_path, method: :get, class: 'button radius expand' %>
-
-<table class="large-12 small-12 column">
+<table class="large-12 small-12 columns">
   <thead>
     <tr>
       <th class="show-for-large-up"></th>
@@ -36,7 +42,7 @@
   </thead>
 
   <tbody>
-    <%= will_paginate @products %>
+    <%= foundation_paginate @products %>
     <% @products.each do |product| %>
       <tr>
         <td class="show-for-large-up"><%= image_tag product.image_url.url(:thumb), :class => 'imgtabs' %></td>
@@ -51,12 +57,12 @@
           <ul id="drop1-<%= product.id %>" data-dropdown-content class="f-dropdown">
             <li><%= link_to 'Show', product %></li>
             <li><%= link_to 'Edit', edit_product_path(product) %></li>
-            <li><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?1' } %></li>
+            <li><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></li>
           </ul>
         </td>
       </tr>
     <% end %>
-    <%= will_paginate @products %>
+    <%= foundation_paginate @products %>
   </tbody>
 </table>
 
@@ -68,7 +74,14 @@
 
   </div>
   <div class="content" id="panel1-2">
-
+<div class="row">
+<ul class="button-group radius right">
+  <li><%= link_to 'Attivi', managment_path, method: :get, class: 'button' %></li>
+  <li><%= link_to 'Non Attivi', managment_path, method: :get, class: 'button' %></li>
+  <li><%= link_to 'Admin', managment_path, method: :get, class: 'button' %></li>
+  <li><%= link_to 'Tutti gli Utenti', managment_path, method: :get, class: 'button' %></li>
+</ul>
+</div>
 <%= form_tag(managment_path, :method => "get", id: "search-form") do %>
         <div class="row collapse">
           <div class="large-10 small-9 columns">
@@ -80,13 +93,11 @@
         </div>
       <% end %>
 
-<%= button_to 'Tutti gli Utenti', managment_path, method: :get, class: 'button radius expand' %>
-
-<table class="large-12 small-12 column">
+<table class="large-12 small-12 columns">
   <thead>
     <tr>
-      <th>User Id</th>
       <th class="show-for-large-up"></th>
+      <th class="show-for-large-up">User Id</th>
       <th class="show-for-large-up">Nome</th>
       <th class="show-for-large-up">Cognome</th>
       <th>Email</th>
@@ -98,11 +109,11 @@
     </tr>
   </thead>
   <tbody>
-    <%= will_paginate @users %>
+    <%= foundation_paginate @users %>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.id %></td>
         <td class="show-for-large-up"><%=image_tag user.information.image_url.url(:thumb), :class => 'imgtabs' %></td>
+        <td class="show-for-large-up"><%= user.id %></td>
         <td class="show-for-large-up"><%= user.information.name %></td>
         <td class="show-for-large-up"><%= user.information.surname %></td>
         <td><%= user.email %></td>
@@ -132,14 +143,21 @@
         </td>
       </tr>
     <% end %>
-    <%= will_paginate @users %>
+    <%= foundation_paginate @users %>
   </tbody>
 </table>
 
 
   </div>
   <div class="content" id="panel1-3">
-
+<div class="row">
+<ul class="button-group radius right">
+  <li><%= link_to 'Not Dispatched', managment_path, method: :get, class: 'button' %></li>
+  <li><%= link_to 'Dispatched', managment_path, method: :get, class: 'button' %></li>
+  <li><%= link_to 'Delivered', managment_path, method: :get, class: 'button' %></li>
+  <li><%= link_to 'Tutti gli Ordini', managment_path, method: :get, class: 'button' %></li>
+</ul>
+</div>
 <%= form_tag(managment_path, :method => "get", id: "search-form") do %>
         <div class="row collapse">
           <div class="large-2 small-3 columns">
@@ -154,16 +172,13 @@
         </div>
       <% end %>
 
-<%= button_to 'Tutti gli Ordini', managment_path, method: :get, class: 'button radius expand' %>
-
-
-<table class="large-12 small-12 column">
+<table class="large-12 small-12 columns">
   <thead>
     <tr>
       <th>Order Id</th>
       <th>User Id</th>
-      <th>Nome</th>
-      <th>Cognome</th>
+      <th class="show-for-large-up">Nome</th>
+      <th class="show-for-large-up">Cognome</th>
       <th>Costo</th>
       <th>Creato</th>
       <th>Stato</th>
@@ -172,13 +187,13 @@
   </thead>
 
   <tbody>
-    <%= will_paginate @orders %>
+    <%= foundation_paginate @orders %>
     <% @orders.each do |order| %>
       <tr>
         <td><%= order.id %></td>
         <td><%= order.user_id %></td>
-        <td><%= order.user.information.name %></td>
-        <td><%= order.user.information.surname %></td>
+        <td class="show-for-large-up"><%= order.user.information.name %></td>
+        <td class="show-for-large-up"><%= order.user.information.surname %></td>
         <td><%= number_to_currency(order.expense, :unit => "€ ", :separator => ",", :delimiter => ".") %></td>
         <td><%= order.created_at.to_formatted_s(:long) %></td>
         <td><%= order.status.name %></td>
@@ -193,7 +208,7 @@
         </td>
       </tr>
     <% end %>
-    <%= will_paginate @orders %>
+    <%= foundation_paginate @orders %>
   </tbody>
 </table>
 

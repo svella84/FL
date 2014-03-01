@@ -1,11 +1,11 @@
 <div class="row">
   <div class="large-7 columns">
-    <h1>Registrati</h1>
+    <h1 class="centra charT">Registrati</h1>
     <p>Aiutaci ad Aiutare chi ha bisogno di una mano</p>
   </div>
 
   <div class="large-5 columns">
-    <h1>Sign Up</h1>
+    <h1 class="centra charT">Sign Up</h1>
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
       <%= devise_error_messages! %>
 
@@ -23,7 +23,7 @@
 
       <div><%= f.password_field :password_confirmation, :placeholder => 'Conferma password' %></div>
 
-      <div><%= f.submit "Registrati", class: "button large-12" %></div>
+      <div><%= f.submit "Registrati", class: "radius button expand" %></div>
 
       <div class="panel log_reg">
         <%= render "devise/shared/links" %>
