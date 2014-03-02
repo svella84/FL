@@ -38,7 +38,7 @@ class Information < ActiveRecord::Base
     end
 
     if decimal
-      update(credit: credit+value.to_f)
+      update(credit: credit + value.to_f)
       return true
     else
       return false

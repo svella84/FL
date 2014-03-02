@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :only_signed_in_user
+  before_action :verify_order, only: [:show]
 
   def new
     @cart = current_cart
@@ -39,7 +40,7 @@ class OrdersController < ApplicationController
       end
     else
       flash[:alert] = "Non puoi procedere con l'acquisto credito insufficente"
-      redirect_to add_credit_path
+      redirect_to credit_path
     end
   end
 

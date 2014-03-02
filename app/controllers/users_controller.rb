@@ -1,5 +1,5 @@
 class UsersController < Devise::RegistrationsController
-  before_action :only_signed_in_user, only: [:show, :credit, :add_credit, :wishlist, :add_to_wishlist, :delete_to_wishlist]
+  before_action :only_signed_in_user, only: [:show, :credit, :add_credit, :wishlist, :add_to_wishlist]
 
   def show
     @user = User.find(current_user.id)
@@ -29,10 +29,10 @@ class UsersController < Devise::RegistrationsController
       wish_item = Wishlist.new( user_id: current_user.id, product_id: params[:product_id])
       wish_item.save
       flash[:success] = "Prodotto inserito correttamente nella tua lista dei Desideri"
-      redirect_to root_path
+      redirect_to wishlist_path
     else
       flash[:alert] = "Prodotto gia' presente nella tua lista dei Desideri"
-      redirect_to root_path
+      redirect_to wishlist_path
     end
   end
 

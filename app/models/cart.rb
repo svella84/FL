@@ -1,10 +1,15 @@
 class Cart < ActiveRecord::Base
   has_many :line_items, :dependent => :destroy
 
+  QNT_REGEX = /\A[0-9]+((.|,)[0-9])?((.|,)[0-9][0-9])?((.|,)[0-9][0-9][0-9])?\Z/
+
   def add_product(product_id, qnt)
     product = Product.find(product_id)
     current_item = line_items.where(:product_id => product_id).first
-    qnt = qnt.to_f
+  
+    if qnt_valid(qnt)
+      qnt.gsub!(",", ".")
+      qnt = qnt.to_f
       if current_item
 	if (product.qnt - current_item.qnt - qnt) >= 0 
           current_item.qnt += qnt
@@ -19,10 +24,20 @@ class Cart < ActiveRecord::Base
         end
       end
       current_item
+    else
+      return 'Quantità non valida'
+    end
   end
 
   def total_price
     line_items.to_a.sum { |item| item.total_price }
   end
+
+  private
+
+    def qnt_valid(qnt)
+      code = (qnt =~ QNT_REGEX)
+      code == 0
+    end
 
 end

@@ -1,22 +1,49 @@
 class AdminsController < ApplicationController
-  before_action :only_admin
+  before_action :verify_admin
 
   def managment
-    @products = Product.all.order("created_at DESC").paginate(page: params[:page], per_page: 15)
-    @users = User.all.paginate(page: params[:page], per_page: 15)
-    @orders = Order.all.paginate(page: params[:page], per_page: 15)
 
-
-    if params[:search]
-      @products = Product.all.search(params[:search]).order("created_at DESC").paginate(page: params[:page], per_page: 15)
+    #MAGAZINO
+    if params[:search] || params[:active] || params[:push]
+      if params[:search]
+        @products = Product.all.search(params[:search]).order("created_at DESC").paginate(page: params[:page], per_page: 15)
+      elsif params[:active]
+        @products = Product.where(active: params[:active]).order("created_at DESC").paginate(page: params[:page], per_page: 15)
+      else
+        @products = Product.where(push: params[:push]).order("created_at DESC").paginate(page: params[:page], per_page: 15)
+      end
+    else
+      @products = Product.all.order("created_at DESC").paginate(page: params[:page], per_page: 15)  
     end
 
-    if params[:UserId]
-      @users = User.find(UserId)
+    #USERS
+    if params[:UserId] || params[:user_active] || params[:admin]
+      if params[:UserId]
+        @users = User.where(id: params[:UserId]).paginate(page: params[:page], per_page: 15)
+      elsif params[:admin]
+        @users = User.where(admin: params[:admin]).paginate(page: params[:page], per_page: 15)
+      elsif params[:user_active]
+        if params[:user_active] == "5"
+          @users = User.where(failed_attempts: params[:user_active].to_i).paginate(page: params[:page], per_page: 15)
+        else
+          @users = User.where(locked_at: nil).paginate(page: params[:page], per_page: 15)
+        end
+      end
+    else
+      @users = User.all.paginate(page: params[:page], per_page: 15)  
     end
 
-    if params[:OrderId]
-      @orders = Order.User.find(OrderId)
+    #ORDERS
+    if params[:OrderId] || params[:Order_UId] || params[:order_status]
+      if params[:OrderId]
+        @orders = Order.where(id: params[:OrderId]).paginate(page: params[:page], per_page: 15)
+      elsif params[:Order_UId]
+        @orders = Order.where(user_id: params[:Order_UId]).paginate(page: params[:page], per_page: 15)
+      else
+        @orders = Order.where(status_id: params[:order_status]).paginate(page: params[:page], per_page: 15)
+      end
+    else
+      @orders = Order.all.order("created_at DESC").paginate(page: params[:page], per_page: 15)
     end
   end
 

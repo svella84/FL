@@ -5,9 +5,9 @@ Farmland::Application.routes.draw do
 
   get "products/push", :to => "products#push", as: "push"
   resources :products
-  resources :line_items
-  resources :carts
   resources :orders
+  resources :carts, :only => [:show, :destroy]
+  resources :line_items, :only => [:create, :destroy]
 
   post "admins/next_status", :to => "admins#next_status", as: "next_status"
   get 'managment', :to => "admins#managment", as: "managment"

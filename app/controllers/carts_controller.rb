@@ -1,4 +1,5 @@
 class CartsController < ApplicationController
+  before_action :verify_cart, only: [:show]
 
   def show
     begin

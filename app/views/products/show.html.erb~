@@ -25,7 +25,7 @@
         <ul class="pricing-table">
           <li class="title"><%= @product.title %></li>
           <li class="bullet-item"><h5>Categoria</h5><%= @product.category.name %></li>
-          <li class="description"><h5>Descrizione</h5><%= @product.description %></li>
+          <li class="description"><h5 class="centra">Descrizione</h5><%= @product.description %></li>
           <li class="bullet-item"><h5>Disponibilità (kg)</h5><%= number_to_currency(@product.qnt, :unit => "", :separator => ",", :delimiter => ".", precision: 3) %></li>
           <li class="price"><h5>Prezzo al (Kg)</h5><%= number_to_currency(@product.price, :unit => "€ ", :separator => ",", :delimiter => ".") %></li>
         </ul>

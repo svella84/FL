@@ -8,14 +8,15 @@
 <div class="tabs-content">
   <div class="content active" id="panel1-1">
 <div class="row">
+<div class="large-12 small-12 columns">
 <ul class="button-group radius right">
-  <li><%= link_to 'Attivi', managment_path, method: :get, class: 'button' %></li>
-  <li><%= link_to 'Push', managment_path, method: :get, class: 'button' %></li>
-  <li><%= link_to 'Non Attivi', managment_path, method: :get, class: 'button' %></li>
+  <li><%= link_to 'Attivi', managment_path(active: "t"), method: :get, class: 'button' %></li>
+  <li><%= link_to 'Push', managment_path(push: "t"), method: :get, class: 'button' %></li>
+  <li><%= link_to 'Non Attivi', managment_path(active: "f"), method: :get, class: 'button' %></li>
   <li><%= link_to 'Tutti i Prodotti', managment_path, method: :get, class: 'button' %></li>
 </ul>
 </div>
-
+</div>
 <%= form_tag(managment_path, :method => "get", id: "search-form") do %>
         <div class="row collapse">
           <div class="large-10 small-9 columns">
@@ -75,12 +76,15 @@
   </div>
   <div class="content" id="panel1-2">
 <div class="row">
+<div class="large-12 small-12 columns">
 <ul class="button-group radius right">
-  <li><%= link_to 'Attivi', managment_path, method: :get, class: 'button' %></li>
-  <li><%= link_to 'Non Attivi', managment_path, method: :get, class: 'button' %></li>
-  <li><%= link_to 'Admin', managment_path, method: :get, class: 'button' %></li>
+  <li><%= link_to 'Attivi', managment_path(user_active: 0), method: :get, class: 'button' %></li>
+  <li><%= link_to 'Non Attivi', managment_path(user_active: 5), method: :get, class: 'button' %></li>
+  <li><%= link_to 'Admin', managment_path(admin: "t"), method: :get, class: 'button' %></li>
+  <li><%= link_to 'Non Admin', managment_path(admin: "f"), method: :get, class: 'button' %></li>
   <li><%= link_to 'Tutti gli Utenti', managment_path, method: :get, class: 'button' %></li>
 </ul>
+</div>
 </div>
 <%= form_tag(managment_path, :method => "get", id: "search-form") do %>
         <div class="row collapse">
@@ -151,26 +155,44 @@
   </div>
   <div class="content" id="panel1-3">
 <div class="row">
+<div class="large-12 small-12 columns">
 <ul class="button-group radius right">
-  <li><%= link_to 'Not Dispatched', managment_path, method: :get, class: 'button' %></li>
-  <li><%= link_to 'Dispatched', managment_path, method: :get, class: 'button' %></li>
-  <li><%= link_to 'Delivered', managment_path, method: :get, class: 'button' %></li>
+  <li><%= link_to 'Not Dispatched', managment_path(order_status: 1), method: :get, class: 'button' %></li>
+  <li><%= link_to 'Dispatched', managment_path(order_status: 2), method: :get, class: 'button' %></li>
+  <li><%= link_to 'Delivered', managment_path(order_status: 3), method: :get, class: 'button' %></li>
   <li><%= link_to 'Tutti gli Ordini', managment_path, method: :get, class: 'button' %></li>
 </ul>
 </div>
+</div>
+
+<div class="row">
+<div class="large-6 small-6 columns">
+
 <%= form_tag(managment_path, :method => "get", id: "search-form") do %>
         <div class="row collapse">
-          <div class="large-2 small-3 columns">
-            <button class="postfix button expand success" type="submit">Search by OrderId <i class="fi-magnifying-glass"></i></button>
+          <div class="large-4 small-4 columns">
+            <button class="postfix button expand" type="submit"><i class="fi-magnifying-glass"></i> Search by OrderId</button>
           </div>
-          <div class="large-8 small-6 columns">
+          <div class="large-8 small-8 columns">
             <%= text_field_tag :OrderId, params[:OrderId], placeholder: "Search Orders" %>
           </div>
-          <div class="large-2 small-3 columns">
+        </div>
+      <% end %>
+</div>
+<div class="large-6 small-6 columns">
+
+<%= form_tag(managment_path, :method => "get", id: "search-form") do %>
+        <div class="row collapse">
+          <div class="large-8 small-8 columns">
+            <%= text_field_tag :Order_UId, params[:Order_UId], placeholder: "Search User Orders" %>
+          </div>
+          <div class="large-4 small-4 columns">
             <button class="postfix button expand" type="submit"><i class="fi-magnifying-glass"></i> Search by UserId</button>
           </div>
         </div>
       <% end %>
+</div>
+</div>
 
 <table class="large-12 small-12 columns">
   <thead>
