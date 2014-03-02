@@ -1,9 +1,0 @@
-I, [2014-03-02T20:33:29.673263 #8678]  INFO -- : Started GET "/" for 127.0.0.1 at 2014-03-02 20:33:29 +0100
-I, [2014-03-02T20:33:29.749475 #8678]  INFO -- : Processing by FarmlandController#index as HTML
-E, [2014-03-02T20:33:29.792160 #8678] ERROR -- : SQLite3::SQLException: no such table: products: SELECT  "products".* FROM "products"  WHERE "products"."active" = 't'  ORDER BY "products"."id" DESC LIMIT 6
-I, [2014-03-02T20:33:29.793552 #8678]  INFO -- : Completed 500 Internal Server Error in 43ms
-F, [2014-03-02T20:33:29.796958 #8678] FATAL -- : 
-ActiveRecord::StatementInvalid (SQLite3::SQLException: no such table: products: SELECT  "products".* FROM "products"  WHERE "products"."active" = 't'  ORDER BY "products"."id" DESC LIMIT 6):
-  app/controllers/farmland_controller.rb:4:in `index'
-
-
