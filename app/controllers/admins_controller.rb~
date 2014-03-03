@@ -4,9 +4,11 @@ class AdminsController < ApplicationController
   def managment
 
     #MAGAZINO
-    if params[:search] || params[:active] || params[:push]
+    if params[:search] || params[:qnt] || params[:active] || params[:push]
       if params[:search]
         @products = Product.all.search(params[:search]).order("created_at DESC").paginate(page: params[:page], per_page: 15)
+      elsif params[:qnt]
+        @products = Product.where("qnt = ?", params[:qnt]).order("created_at DESC").paginate(page: params[:page], per_page: 15)
       elsif params[:active]
         @products = Product.where(active: params[:active]).order("created_at DESC").paginate(page: params[:page], per_page: 15)
       else
@@ -43,7 +45,7 @@ class AdminsController < ApplicationController
         @orders = Order.where(status_id: params[:order_status]).paginate(page: params[:page], per_page: 15)
       end
     else
-      @orders = Order.all.paginate(page: params[:page], per_page: 15)
+      @orders = Order.all.order("created_at DESC").paginate(page: params[:page], per_page: 15)
     end
   end
 

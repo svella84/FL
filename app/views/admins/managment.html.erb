@@ -13,6 +13,7 @@
   <li><%= link_to 'Attivi', managment_path(active: "t"), method: :get, class: 'button' %></li>
   <li><%= link_to 'Push', managment_path(push: "t"), method: :get, class: 'button' %></li>
   <li><%= link_to 'Non Attivi', managment_path(active: "f"), method: :get, class: 'button' %></li>
+  <li><%= link_to '< 100', managment_path(qnt: 100), method: :get, class: 'button' %></li>
   <li><%= link_to 'Tutti i Prodotti', managment_path, method: :get, class: 'button' %></li>
 </ul>
 </div>

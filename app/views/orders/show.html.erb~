@@ -69,8 +69,8 @@
 
     </table>
 
-    <% if current_user? %>
-      <%= link_to 'Torna alla Lista degli Ordini', orders_path, class: 'radius button expand' %>
+    <% if current_user.id == @order.user_id %>
+      <%= link_to 'Torna alla Lista dei tuoi Ordini', orders_path, class: 'radius button expand' %>
     <% end %>
     <% if current_user.admin? %>
       <%= button_to 'Go to Managment', managment_path, method: :get, class: 'button radius expand secondary' %>

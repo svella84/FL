@@ -13,6 +13,7 @@
   <li><%= link_to 'Attivi', managment_path(active: "t"), method: :get, class: 'button' %></li>
   <li><%= link_to 'Push', managment_path(push: "t"), method: :get, class: 'button' %></li>
   <li><%= link_to 'Non Attivi', managment_path(active: "f"), method: :get, class: 'button' %></li>
+  <li><%= link_to '< 100 Kg Or Lt', managment_path(qnt: 100), method: :get, class: 'button' %></li>
   <li><%= link_to 'Tutti i Prodotti', managment_path, method: :get, class: 'button' %></li>
 </ul>
 </div>
@@ -78,8 +79,8 @@
 <div class="row">
 <div class="large-12 small-12 columns">
 <ul class="button-group radius right">
-  <li><%= link_to 'Attivi', managment_path(user_active: 0), method: :get, class: 'button' %></li>
-  <li><%= link_to 'Non Attivi', managment_path(user_active: 5), method: :get, class: 'button' %></li>
+  <li><%= link_to 'Attivi', managment_path(user_active: "0"), method: :get, class: 'button' %></li>
+  <li><%= link_to 'Non Attivi', managment_path(user_active: "5"), method: :get, class: 'button' %></li>
   <li><%= link_to 'Admin', managment_path(admin: "t"), method: :get, class: 'button' %></li>
   <li><%= link_to 'Non Admin', managment_path(admin: "f"), method: :get, class: 'button' %></li>
   <li><%= link_to 'Tutti gli Utenti', managment_path, method: :get, class: 'button' %></li>
