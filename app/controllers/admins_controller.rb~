@@ -8,7 +8,7 @@ class AdminsController < ApplicationController
       if params[:search]
         @products = Product.all.search(params[:search]).order("created_at DESC").paginate(page: params[:page], per_page: 15)
       elsif params[:qnt]
-        @products = Product.where("qnt = ?", params[:qnt]).order("created_at DESC").paginate(page: params[:page], per_page: 15)
+        @products = Product.where("qnt <= ?", params[:qnt]).order("created_at DESC").paginate(page: params[:page], per_page: 15)
       elsif params[:active]
         @products = Product.where(active: params[:active]).order("created_at DESC").paginate(page: params[:page], per_page: 15)
       else

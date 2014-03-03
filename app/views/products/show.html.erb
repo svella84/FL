@@ -8,7 +8,9 @@
           <div class="panel large-12 column">
             <div class="row">
               <div class="large-9 column">
-                <h5>Quantità Desideratà (Kg Or Lt):</h5>
+                <h5>
+                  Quantità Desideratà <% if @product.category.id.between?(1, 4) %>(kg):<% else %>(Ltr):<% end %>
+                </h5>
               </div>
               <div class="large-3 column">
                 <%= f.text_field :qnt, value: 1.000 %>
@@ -25,9 +27,15 @@
         <ul class="pricing-table">
           <li class="title"><%= @product.title %></li>
           <li class="bullet-item"><h5>Categoria</h5><%= @product.category.name %></li>
-          <li class="description"><h5 class="centra">Descrizione</h5><%= @product.description %></li>
-          <li class="bullet-item"><h5>Disponibilità (kg Or Lt)</h5><%= number_to_currency(@product.qnt, :unit => "", :separator => ",", :delimiter => ".", precision: 3) %></li>
-          <li class="price"><h5>Prezzo al (Kg Or Lt)</h5><%= number_to_currency(@product.price, :unit => "€ ", :separator => ",", :delimiter => ".") %></li>
+          <li class="description"><h5 class="centra">Descrizione</h5><%= simple_format(@product.description, {}, wrapper_tag: "description") %></li>
+          <li class="bullet-item">
+            <h5>
+              Disponibilità <% if @product.category.id.between?(1, 4) %>(kg)<% else %>(Ltr)<% end %>
+            </h5><%= number_to_currency(@product.qnt, :unit => "", :separator => ",", :delimiter => ".", precision: 3) %></li>
+          <li class="price">
+            <h5>
+              Prezzo al <% if @product.category.id.between?(1, 4) %>(kg)<% else %>(Ltr)<% end %>
+            </h5><%= number_to_currency(@product.price, :unit => "€ ", :separator => ",", :delimiter => ".") %></li>
         </ul>
       </div>
     </div>

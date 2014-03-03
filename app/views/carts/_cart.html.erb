@@ -5,8 +5,8 @@
         <thead>
       <tr>
          <th></th>
-         <th>Quantità (Kg Or Lt)</th>
-         <th>Costo (Kg Or Lt)</th>
+         <th>Quantità</th>
+         <th>Costo per Unità</th>
          <th>Prodotto</th>
          <th>Costo</th>
          <th></th>
@@ -16,7 +16,13 @@
       <% for item in @cart.line_items %>
         <tr>
           <td><%= link_to (image_tag item.product.image_url.url(:thumb)), product_path(item.product), :class => 'imgtabs' %></td>
-          <td><%= number_to_currency(item.qnt,:unit => "", :separator => ",", :delimiter => ".", precision: 3) %></td>
+          <td>
+            <% if item.product.category.id.between?(1, 4) %>
+              <%= number_to_currency(item.qnt,:unit => "Kg ", :separator => ",", :delimiter => ".", precision: 3) %>
+            <% else %>
+              <%= number_to_currency(item.qnt,:unit => "Ltr ", :separator => ",", :delimiter => ".", precision: 3) %>
+            <% end %>
+          </td>
           <td><%= number_to_currency(item.product.price, :unit => "€ ", :separator => ",", :delimiter => ".") %></td>
           <td><%= link_to item.product.title, product_path(item.product) %></td>
           <td><%= number_to_currency(item.total_price, :unit => "€ ", :separator => ",", :delimiter => ".") %></td>
