@@ -20,7 +20,7 @@ module FarmlandHelper
     def verify_order #CONTROLLER ORDERS
       if Order.where(id: params[:id]).empty?
         if current_user.admin
-          flash[:alert] = "Ordine Non Esiste"
+          flash[:alert] = "Ordine selezionato Non Esiste"
           redirect_to root_path
         else
           flash[:alert] = "Permesso negato"
@@ -37,6 +37,15 @@ module FarmlandHelper
       end
     end
 
+    def verify_product #CONTROLLER PRODUCTS
+      if Product.where(id: params[:id]).empty?
+        flash[:alert] = "Prodotto selezionato non esiste"
+        redirect_to root_path
+      else
+        return
+      end
+    end
+
     def verify_cart #CONTROLLER CARTS
       if Cart.where(id: params[:id]).empty?
         return
@@ -48,6 +57,15 @@ module FarmlandHelper
           flash[:alert] = "Permesso negato"
           redirect_to root_path
         end
+      end
+    end
+
+    def verify_user #CONTROLLER ADMINS
+      if User.where(id: params[:id]).empty?
+        flash[:alert] = "Utente selezionato non esiste"
+        redirect_to managment_path
+      else
+        return
       end
     end
 

@@ -1,7 +1,7 @@
 Farmland::Application.routes.draw do
 
-  get "static_pages/about", as: 'about'
-  get "static_pages/help", as: 'help'
+  get "about", :to => "static_pages#about", as: 'about'
+  get "help", :to => "static_pages#help", as: 'help'
 
   get "products/push", :to => "products#push", as: "push"
   resources :products
@@ -9,14 +9,17 @@ Farmland::Application.routes.draw do
   resources :carts, :only => [:show, :destroy]
   resources :line_items, :only => [:create, :destroy]
 
-  post "admins/next_status", :to => "admins#next_status", as: "next_status"
   get 'managment', :to => "admins#managment", as: "managment"
+  get 'managment/products', :to => "admins#products", as: "managment_products"
+  get 'managment/users', :to => "admins#users", as: "managment_users"
+  get 'managment/orders', :to => "admins#orders", as: "managment_orders"
+  post 'managment/order/next_status', :to => "admins#next_status", as: "next_status"
+  post 'managment/user/mod_admin', :to => "admins#mod_user_admin", as: "admin_mod"
+  post 'managment/user/lock_user', :to => "admins#mod_user_lock", as: "lock_mod"
+  get 'managment/user/profile', :to => "admins#show", as: "admin_profile"  
 
   devise_for :users, :controllers => { :registrations => "users" }
-  devise_scope :user do
-    get "users/admin_profile", :to => "admins#show", as: "admin_profile" 
-    post "users/mod_admin", :to => "admins#mod_user_admin", as: "admin_mod" 
-    post "users/lock_user", :to => "admins#mod_user_lock", as: "lock_mod" 
+  devise_scope :user do 
     get "users/profile", :to => "users#show", as: 'profile'
     delete "users/delete_account", :to => "users#delete_account", as: 'delete_account'
     post "users/add_credit", :to => "users#add_credit", as: 'add_credit'

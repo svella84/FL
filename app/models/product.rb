@@ -16,7 +16,7 @@ class Product < ActiveRecord::Base
   validates :qnt, :price, numericality: { greater_than_or_equal_to: 0.01 }
 
 
-  # non ci sono elementi che fanno riferimento a questo prodotto
+  # NON CI SONO ELEMENTI CHE FANNO RIFERIMENTO A QUESTO PRODOTTO
   def ensure_not_referenced_by_any_line_item
     if line_items.count.zero?
       return true
@@ -26,9 +26,9 @@ class Product < ActiveRecord::Base
     end
   end
 
-  # It returns the products whose titles contain one or more words that form the query
+  # RICERCA PER TITLE DEL PRODOTTO
   def self.search(query)
-    # where(:title, query) -> This would return an exact match of the query
+    # where(:title, query)
     where("title like ?", "%#{query}%") 
   end
 

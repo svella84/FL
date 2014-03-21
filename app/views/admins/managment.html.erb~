@@ -1,248 +1,166 @@
 <div class="row">
-  <div class="large-12 columns">
-<dl class="tabs" data-tab>
-  <dd class="active"><a href="#panel1-1">Magazzino</a></dd>
-  <dd><a href="#panel1-2">Utenti</a></dd>
-  <dd><a href="#panel1-3">Ordini</a></dd>
-</dl>
-<div class="tabs-content">
-  <div class="content active" id="panel1-1">
-<div class="row">
-<div class="large-12 small-12 columns">
-<ul class="button-group radius right">
-  <li><%= link_to 'Attivi', managment_path(active: "t"), method: :get, class: 'button small' %></li>
-  <li><%= link_to 'Push', managment_path(push: "t"), method: :get, class: 'button small' %></li>
-  <li><%= link_to 'Non Attivi', managment_path(active: "f"), method: :get, class: 'button small' %></li>
-  <li><%= link_to '< 100', managment_path(qnt: 100), method: :get, class: 'button small' %></li>
-  <li><%= link_to 'Tutti i Prodotti', managment_path, method: :get, class: 'button small' %></li>
-</ul>
-</div>
-</div>
-<%= form_tag(managment_path, :method => "get", id: "search-form") do %>
-        <div class="row collapse">
-          <div class="large-10 small-9 columns">
-            <%= text_field_tag :search, params[:search], placeholder: "Search Products by Title" %>
-          </div>
-          <div class="large-2 small-3 columns">
-            <button class="postfix button expand" type="submit">Search <i class="fi-magnifying-glass"></i></button>
-          </div>
-        </div>
-      <% end %>
+  <div class="large-12 small-12 columns">
+    <h1 class="centra charT">Managment</h1>
 
-<table class="large-12 small-12 columns">
+    <fieldset>
+      <div class="row">
+        <div class="large-4 small-4 columns">
+          <%= link_to  managment_products_path do %>
+            <%= image_tag "/system/managment/product.jpg" %>
+            <div class="panel centra">
+              <h6>Products</h6>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="large-4 small-4 columns">
+          <%= link_to  managment_users_path do %>
+            <%= image_tag "/system/managment/user.jpg" %>
+            <div class="panel centra">
+              <h6>Users</h6>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="large-4 small-4 columns">
+          <%= link_to  managment_orders_path do %>
+            <%= image_tag "/system/managment/order.jpg" %>
+            <div class="panel centra">
+              <h6>Orders</h6>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 small-12 columns">
+
+<table id="products" class="display large-12 small-12 columns">
+<caption>Ultimi 20 Prodotti Inseriti</caption>
   <thead>
     <tr>
-      <th class="show-for-large-up"></th>
+      <th>Id</th>
       <th>Title</th>
       <th>Category</th>
       <th>Qnt</th>
       <th>Price</th>
       <th>Active</th>
       <th>Push</th>
-      <th></th>
     </tr>
   </thead>
 
   <tbody>
-    <%= foundation_paginate @products %>
     <% @products.each do |product| %>
       <tr>
-        <td class="show-for-large-up"><%= image_tag product.image_url.url(:thumb), :class => 'imgtabs' %></td>
-	<td><%= product.title %></td>        
+        <td><%= product.id %> </td>
+	<td><%= link_to(product.title, product) %></td>        
 	<td><%= product.category.name %></td>
         <td>
           <% if product.category.id.between?(1, 4) %>
             <%= number_to_currency(product.qnt,:unit => "Kg ", :separator => ",", :delimiter => ".", precision: 3) %>
           <% else %>
-            <%= number_to_currency(product.qnt,:unit => "Ltr ", :separator => ",", :delimiter => ".", precision: 3) %>
+            <%= number_to_currency(product.qnt, :unit => "Ltr ", :separator => ",", :delimiter => ".", precision: 3) %>
           <% end %>
         </td>
         <td><%= number_to_currency(product.price, :unit => "€ ", :separator => ",", :delimiter => ".") %></td>
         <td><%= product.active %></td>
         <td><%= product.push %></td>
-        <td class="centra">
-          <a href="#" data-dropdown="drop1-<%= product.id %>" class="button dropdown radius tiny">Options</a><br>
-          <ul id="drop1-<%= product.id %>" data-dropdown-content class="f-dropdown">
-            <li><%= link_to 'Show', product %></li>
-            <li><%= link_to 'Edit', edit_product_path(product) %></li>
-            <li><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-          </ul>
-        </td>
+        
       </tr>
     <% end %>
-    <%= foundation_paginate @products %>
+
   </tbody>
 </table>
 
-<br>
+<br />
 
-<%= link_to 'New Product', new_product_path, class: 'button radius expand success' %>
-
-
-
-  </div>
-  <div class="content" id="panel1-2">
-<div class="row">
-<div class="large-12 small-12 columns">
-<ul class="button-group radius right">
-  <li><%= link_to 'Attivi', managment_path(user_active: "0"), method: :get, class: 'button small' %></li>
-  <li><%= link_to 'Non Attivi', managment_path(user_active: "5"), method: :get, class: 'button small' %></li>
-  <li><%= link_to 'Admin', managment_path(admin: "t"), method: :get, class: 'button small' %></li>
-  <li><%= link_to 'Non Admin', managment_path(admin: "f"), method: :get, class: 'button small' %></li>
-  <li><%= link_to 'Tutti gli Utenti', managment_path, method: :get, class: 'button small' %></li>
-</ul>
-</div>
-</div>
-<%= form_tag(managment_path, :method => "get", id: "search-form") do %>
-        <div class="row collapse">
-          <div class="large-10 small-9 columns">
-            <%= text_field_tag :UserId, params[:UserId], placeholder: "Search Users" %>
-          </div>
-          <div class="large-2 small-3 columns">
-            <button class="postfix button expand" type="submit">Search by UserId <i class="fi-magnifying-glass"></i></button>
-          </div>
-        </div>
-      <% end %>
-
-<table class="large-12 small-12 columns">
+<table class="users display large-12 small-12 columns">
+<caption>Ultimi 20 Utenti Loggati</caption>
   <thead>
     <tr>
-      <th class="show-for-large-up"></th>
-      <th class="show-for-large-up">User Id</th>
-      <th class="show-for-large-up">Nome</th>
-      <th class="show-for-large-up">Cognome</th>
+      <th>Id</th>
       <th>Email</th>
-      <th>Admin</th>
-      <th>Accessi</th>
+      <th>Last Access</th>
       <th>Last Ip</th>
-      <th>Blocca</th>
-      <th></th>
+      <th>Accessi</th>
     </tr>
   </thead>
+
   <tbody>
-    <%= foundation_paginate @users %>
     <% @users.each do |user| %>
       <tr>
-        <td class="show-for-large-up"><%=image_tag user.information.image_url.url(:thumb), :class => 'imgtabs' %></td>
-        <td class="show-for-large-up"><%= user.id %></td>
-        <td class="show-for-large-up"><%= user.information.name %></td>
-        <td class="show-for-large-up"><%= user.information.surname %></td>
-        <td><%= user.email %></td>
-        <td><%= user.admin %></td>
-        <td><%= user.sign_in_count %></td>
+        <td><%= user.id %></td>
+        <td><%= link_to(user.email, admin_profile_path(id: user.id)) %></td>
+        <td><%= user.last_sign_in_at.to_formatted_s(:long) %></td>
         <td><%= user.last_sign_in_ip %></td>
-        <% if user.locked_at == nil %>
-          <td><%= user.locked_at %></td>
-        <% else %>
-          <td><%= user.locked_at.to_formatted_s(:long) %></td>
-        <% end %>
-        <td class="centra">
-          <a href="#" data-dropdown="drop2-<%= user.id %>" class="button dropdown radius tiny">Options</a><br>
-          <ul id="drop2-<%= user.id %>" data-dropdown-content class="f-dropdown">
-            <li><%= link_to 'Show', admin_profile_path(id: user.id) %></li>
-            <% if user.admin? %>
-              <li><%= link_to 'Not Admin', admin_mod_path(id: user.id), method: :post %></li>
-            <% else %>
-              <li><%= link_to 'Admin', admin_mod_path(id: user.id), method: :post %></li>
-            <% end %>
-            <% if user.locked_at == nil %>
-              <li><%= link_to 'Blocca', lock_mod_path(id: user.id), method: :post %></li>
-            <% else %>
-              <li><%= link_to 'Sblocca', lock_mod_path(id: user.id), method: :post %></li>
-            <% end %>
-          </ul>
-        </td>
+        <td><%= user.sign_in_count %></td>
       </tr>
     <% end %>
-    <%= foundation_paginate @users %>
+
   </tbody>
 </table>
 
+<br />
 
-  </div>
-  <div class="content" id="panel1-3">
-<div class="row">
-<div class="large-12 small-12 columns">
-<ul class="button-group radius right">
-  <li><%= link_to 'Not Dispatched', managment_path(order_status: 1), method: :get, class: 'button small' %></li>
-  <li><%= link_to 'Dispatched', managment_path(order_status: 2), method: :get, class: 'button small' %></li>
-  <li><%= link_to 'Delivered', managment_path(order_status: 3), method: :get, class: 'button small' %></li>
-  <li><%= link_to 'Tutti gli Ordini', managment_path, method: :get, class: 'button small' %></li>
-</ul>
-</div>
-</div>
-
-<div class="row">
-<div class="large-6 small-6 columns">
-
-<%= form_tag(managment_path, :method => "get", id: "search-form") do %>
-        <div class="row collapse">
-          <div class="large-4 small-4 columns">
-            <button class="postfix button expand" type="submit"><i class="fi-magnifying-glass"></i> Search by OrderId</button>
-          </div>
-          <div class="large-8 small-8 columns">
-            <%= text_field_tag :OrderId, params[:OrderId], placeholder: "Search Orders" %>
-          </div>
-        </div>
-      <% end %>
-</div>
-<div class="large-6 small-6 columns">
-
-<%= form_tag(managment_path, :method => "get", id: "search-form") do %>
-        <div class="row collapse">
-          <div class="large-8 small-8 columns">
-            <%= text_field_tag :Order_UId, params[:Order_UId], placeholder: "Search User Orders" %>
-          </div>
-          <div class="large-4 small-4 columns">
-            <button class="postfix button expand" type="submit"><i class="fi-magnifying-glass"></i> Search by UserId</button>
-          </div>
-        </div>
-      <% end %>
-</div>
-</div>
-
-<table class="large-12 small-12 columns">
+<table class="users display large-12 small-12 columns">
+<caption>Ultimi 6 Admin Loggati</caption>
   <thead>
     <tr>
-      <th>Order Id</th>
-      <th>User Id</th>
-      <th class="show-for-large-up">Nome</th>
-      <th class="show-for-large-up">Cognome</th>
-      <th>Costo</th>
-      <th>Creato</th>
-      <th>Stato</th>
-      <th></th>
+      <th>Id</th>
+      <th>Email</th>
+      <th>Last Access</th>
+      <th>Last Ip</th>
+      <th>Accessi</th>
     </tr>
   </thead>
 
   <tbody>
-    <%= foundation_paginate @orders %>
-    <% @orders.each do |order| %>
+    <% @usersA.each do |userA| %>
       <tr>
-        <td><%= order.id %></td>
-        <td><%= order.user_id %></td>
-        <td class="show-for-large-up"><%= order.user.information.name %></td>
-        <td class="show-for-large-up"><%= order.user.information.surname %></td>
-        <td><%= number_to_currency(order.expense, :unit => "€ ", :separator => ",", :delimiter => ".") %></td>
-        <td><%= order.created_at.to_formatted_s(:long) %></td>
-        <td><%= order.status.name %></td>
-        <td class="centra">
-          <a href="#" data-dropdown="drop3-<%= order.id %>" class="button dropdown radius tiny">Options</a><br>
-          <ul id="drop3-<%= order.id %>" data-dropdown-content class="f-dropdown">
-            <li><%= link_to 'Show', order_path(order) %></li>
-            <% if order.status_id < 3 %>
-              <li><%= link_to 'Avanza Stato', next_status_path(id: order.id), method: :post %></li>
-            <% end %>
-          </ul>
-        </td>
+        <td><%= userA.id %></td>
+        <td><%= link_to(userA.email, admin_profile_path(id: userA.id)) %></td>
+        <td><%= userA.last_sign_in_at.to_formatted_s(:long) %></td>
+        <td><%= userA.last_sign_in_ip %></td>
+        <td><%= userA.sign_in_count %></td>
       </tr>
     <% end %>
-    <%= foundation_paginate @orders %>
+
   </tbody>
 </table>
 
+<br />
+
+<table id="orders" class="display large-12 small-12 columns">
+<caption>Ultimi 20 Ordini Ricevuti</caption>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Email</th>
+      <th>Create</th>
+      <th>Expense</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= link_to(order.id, order) %> </td>
+	<td><%= link_to(order.user.email, admin_profile_path(id: order.user.id)) %></td>
+        <td><%= order.created_at.to_formatted_s(:long) %></td>
+        <td><%= number_to_currency(order.expense, :unit => "€ ", :separator => ",", :delimiter => ".") %></td>
+        <td><%= order.status.name %></td>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>
 
   </div>
 </div>
-  </div>
-</div>
+
+
+

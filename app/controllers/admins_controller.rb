@@ -1,66 +1,64 @@
 class AdminsController < ApplicationController
   before_action :verify_admin
+  before_action :verify_user, only: [:show]
 
   def managment
+    @products = Product.last(20)
+    @orders = Order.last(20)
+    @users = User.where(admin: false).order("last_sign_in_at ASC").last(20)
+    @usersA = User.where(admin: true).order("last_sign_in_at ASC").last(6)
+  end
 
-    #MAGAZINO
-    if params[:search] || params[:qnt] || params[:active] || params[:push]
-      if params[:search]
-        @products = Product.all.search(params[:search]).order("created_at DESC").paginate(page: params[:page], per_page: 15)
-      elsif params[:qnt]
-        @products = Product.where("qnt < ?", params[:qnt]).order("created_at DESC").paginate(page: params[:page], per_page: 15)
+  def products
+    if params[:qnt] || params[:active] || params[:push]
+      if params[:qnt]
+        @products = Product.where("qnt < ?", params[:qnt])
       elsif params[:active]
-        @products = Product.where(active: params[:active]).order("created_at DESC").paginate(page: params[:page], per_page: 15)
+        @products = Product.where(active: params[:active])
       else
-        @products = Product.where(push: params[:push]).order("created_at DESC").paginate(page: params[:page], per_page: 15)
+        @products = Product.where(push: params[:push])
       end
     else
-      @products = Product.all.order("created_at DESC").paginate(page: params[:page], per_page: 15)  
-    end
-
-    #USERS
-    if params[:UserId] || params[:user_active] || params[:admin]
-      if params[:UserId]
-        @users = User.where(id: params[:UserId]).paginate(page: params[:page], per_page: 15)
-      elsif params[:admin]
-        @users = User.where(admin: params[:admin]).paginate(page: params[:page], per_page: 15)
-      elsif params[:user_active]
-        if params[:user_active] == "5"
-          @users = User.where(failed_attempts: params[:user_active].to_i).paginate(page: params[:page], per_page: 15)
-        else
-          @users = User.where(locked_at: nil).paginate(page: params[:page], per_page: 15)
-        end
-      end
-    else
-      @users = User.all.paginate(page: params[:page], per_page: 15)  
-    end
-
-    #ORDERS
-    if params[:OrderId] || params[:Order_UId] || params[:order_status]
-      if params[:OrderId]
-        @orders = Order.where(id: params[:OrderId]).paginate(page: params[:page], per_page: 15)
-      elsif params[:Order_UId]
-        @orders = Order.where(user_id: params[:Order_UId]).paginate(page: params[:page], per_page: 15)
-      else
-        @orders = Order.where(status_id: params[:order_status]).paginate(page: params[:page], per_page: 15)
-      end
-    else
-      @orders = Order.all.order("created_at DESC").paginate(page: params[:page], per_page: 15)
+      @products = Product.all
     end
   end
 
-  def show
+  def users
+    if params[:user_active] || params[:admin]
+      if params[:admin]
+        @users = User.where(admin: params[:admin])
+      elsif params[:user_active]
+        if params[:user_active] == "5"
+          @users = User.where(failed_attempts: params[:user_active].to_i)
+        else
+          @users = User.where(locked_at: nil)
+        end
+      end
+    else
+      @users = User.all
+    end
+  end
+
+  def orders
+    if  params[:order_status]
+      @orders = Order.where(status_id: params[:order_status])
+    else
+      @orders = Order.all
+    end
+  end
+
+  def show # VIEW PROFILO UTENTE
     @user = User.find(params[:id])
     render "users/show"
   end
 
-  def mod_user_admin
+  def mod_user_admin # MODIFICA USER/ADMIN ADMIN/USER
     user = User.find(params[:id])
     user.update(:admin => !user.admin) 
     redirect_to managment_path
   end
 
-  def mod_user_lock
+  def mod_user_lock # MODIFICA LOCK/UNLOCK UNLOCK/LOCK
     user = User.find(params[:id])
     if user.locked_at == nil
       user.update(:failed_attempts => 5)
@@ -72,7 +70,7 @@ class AdminsController < ApplicationController
     redirect_to managment_path   
   end
 
-  def next_status
+  def next_status # AVANZA STATO NELLA SPEDIZIONE
     order = Order.find(params[:id])
     status = order.status_id + 1
     order.update(:status_id => status) 

@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+//= require dataTables/jquery.dataTables
 
 $(function(){ $(document).foundation({
   orbit: {
@@ -26,6 +27,49 @@ $(function(){ $(document).foundation({
     swipe: true,
   }
 }); });
+
+$(document).ready(function() {
+
+    $('#products').dataTable({
+        "bJQueryUI": true,
+        "sScrollY": "145px",
+        "bPaginate": false,
+        "bFilter": false,
+        "bSort": true,
+        "aaSorting": [[ 0, "desc" ]],
+        "bInfo": false,
+        "bScrollCollapse": true,
+    });
+
+    $('.users').dataTable( {
+        "bJQueryUI": true,
+        "sScrollY": "145px",
+        "bPaginate": false,
+        "bFilter": false,
+        "bSort": true,
+        "aaSorting": [[ 0, "desc" ]],
+        "bInfo": false,
+        "bScrollCollapse": true,
+    } );
+
+    $('#orders').dataTable( {
+        "bJQueryUI": true,
+        "sScrollY": "145px",
+        "bPaginate": false,
+        "bFilter": false,
+        "bSort": true,
+        "aaSorting": [[ 0, "desc" ]],
+        "bInfo": false,
+        "bScrollCollapse": true,
+        
+    } );
+
+    $('#man').dataTable({
+        "bJQueryUI": true,
+        "sPaginationType": "full_numbers",
+        "aaSorting": [[ 0, "desc" ]],
+    });
+} );
 
 //= require turbolinks
 //= require_tree .

@@ -1,0 +1,89 @@
+<div class="row">
+<div class="large-12 small-12 columns">
+    <h1 class="centra charT">Managment Users</h1>
+<ul class="button-group radius right">
+  <li><%= link_to 'Attivi', managment_users_path(user_active: "0"), method: :get, class: 'button small' %></li>
+  <li><%= link_to 'Non Attivi', managment_users_path(user_active: "5"), method: :get, class: 'button small' %></li>
+  <li><%= link_to 'Admin', managment_users_path(admin: "t"), method: :get, class: 'button small' %></li>
+  <li><%= link_to 'Non Admin', managment_users_path(admin: "f"), method: :get, class: 'button small' %></li>
+  <li><%= link_to 'Tutti gli Utenti', managment_users_path, method: :get, class: 'button small' %></li>
+</ul>
+
+</div>
+</div>
+
+
+<div class="row">
+<div class="large-12 small-12 columns">
+
+<table id="man" class="display large-12 small-12 columns">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th class="show-for-large-up"></th>
+      <th>Email</th>
+      <th>Creato</th>
+      <th>Last Access</th>
+      <th class="show-for-large-up">Last Ip</th>
+      <th>Log</th>
+      <th>Admin</th>
+      <th>Blocca</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tfoot>
+    <tr>
+      <th>Id</th>
+      <th class="show-for-large-up"></th>
+      <th>Email</th>
+      <th>Creato</th>
+      <th>Last Access</th>
+      <th class="show-for-large-up">Last Ip</th>
+      <th>Log</th>
+      <th>Admin</th>
+      <th>Blocca</th>
+      <th></th>
+    </tr>
+  </tfoot>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td class="show-for-large-up"><%=image_tag user.information.image_url.url(:thumb), :class => 'imgtabs' %></td>
+        <td><%= link_to(user.email, admin_profile_path(id: user.id)) %></td>
+        <td><%= user.created_at.to_formatted_s(:long) %></td>
+        <td><%= user.last_sign_in_at.to_formatted_s(:long) %></td>
+        <td class="show-for-large-up"><%= user.last_sign_in_ip %></td>
+        <td><%= user.sign_in_count %></td>
+        <td><%= user.admin %></td>
+        <% if user.locked_at == nil %>
+          <td><%= user.locked_at %></td>
+        <% else %>
+          <td><%= user.locked_at.to_formatted_s(:long) %></td>
+        <% end %>
+        <td class="centra">
+          <a href="#" data-dropdown="drop2-<%= user.id %>" class="button dropdown radius tiny">Options</a><br>
+          <ul id="drop2-<%= user.id %>" data-dropdown-content class="f-dropdown">
+            <% if user.admin? %>
+              <li><%= link_to 'Not Admin', admin_mod_path(id: user.id), method: :post %></li>
+            <% else %>
+              <li><%= link_to 'Admin', admin_mod_path(id: user.id), method: :post %></li>
+            <% end %>
+            <% if user.locked_at == nil %>
+              <li><%= link_to 'Blocca', lock_mod_path(id: user.id), method: :post %></li>
+            <% else %>
+              <li><%= link_to 'Sblocca', lock_mod_path(id: user.id), method: :post %></li>
+            <% end %>
+          </ul>
+        </td>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>
+
+</div>
+</div>
+

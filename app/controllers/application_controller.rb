@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   private
     
-  def current_cart
+  def current_cart # CREAZIONE O APERTURA CARELLO DELLA SESSIONE
     Cart.find(session[:cart_id])
     rescue ActiveRecord::RecordNotFound
     cart = Cart.create

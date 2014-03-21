@@ -1,7 +1,12 @@
 <div class="row">
   <div class="large-12 small-12 columns">
-    <table class="large-12 small-12 columns">
-        <captions><h1 class="centra charT">Il tuo Carrello</h1></caption>
+    <h1 class="centra charT">Il tuo Carrello</h1>
+</div>
+</div>
+
+<div class="row">
+  <div class="large-12 small-12 columns">
+    <table class="large-2 small-12 columns">
         <thead>
       <tr>
          <th></th>
@@ -18,9 +23,9 @@
           <td><%= link_to (image_tag item.product.image_url.url(:thumb)), product_path(item.product), :class => 'imgtabs' %></td>
           <td>
             <% if item.product.category.id.between?(1, 4) %>
-              <%= number_to_currency(item.qnt,:unit => "Kg", :separator => ",", :delimiter => ".", precision: 3) %>
+              <%= number_to_currency(item.qnt,:unit => "Kg ", :separator => ",", :delimiter => ".", precision: 3) %>
             <% else %>
-              <%= number_to_currency(item.qnt,:unit => "Ltr", :separator => ",", :delimiter => ".", precision: 3) %>
+              <%= number_to_currency(item.qnt,:unit => "Ltr ", :separator => ",", :delimiter => ".", precision: 3) %>
             <% end %>
           </td>
           <td><%= number_to_currency(item.product.price, :unit => "€ ", :separator => ",", :delimiter => ".") %></td>

@@ -1,0 +1,67 @@
+<div class="row">
+<div class="large-12 small-12 columns">
+    <h1 class="centra charT">Managment Products</h1>
+<ul class="button-group radius right">
+  <li><%= link_to 'New Product', new_product_path, class: 'button small success' %></li>
+  <li><%= link_to 'Attivi', managment_products_path(active: "t"), method: :get, class: 'button small' %></li>
+  <li><%= link_to 'Push', managment_products_path(push: "t"), method: :get, class: 'button small' %></li>
+  <li><%= link_to 'Non Attivi', managment_products_path(active: "f"), method: :get, class: 'button small' %></li>
+  <li><%= link_to '< 100', managment_products_path(qnt: 100), method: :get, class: 'button small' %></li>
+  <li><%= link_to 'Tutti i Prodotti', managment_products_path, method: :get, class: 'button small' %></li>
+</ul>
+
+</div>
+</div>
+
+<div class="row">
+<div class="large-12 small-12 columns">
+
+<table id="man" class="display large-12 small-12 columns">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th class="show-for-large-up"></th>
+      <th>Title</th>
+      <th>Category</th>
+      <th>Qnt</th>
+      <th>Price</th>
+      <th>Active</th>
+      <th>Push</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.id %></td>  
+        <td class="show-for-large-up"><%= image_tag product.image_url.url(:thumb), :class => 'imgtabs' %></td>
+	<td><%= link_to(product.title, product) %></td>         
+	<td><%= product.category.name %></td>
+        <td>
+          <% if product.category.id.between?(1, 4) %>
+            <%= number_to_currency(product.qnt,:unit => "Kg ", :separator => ",", :delimiter => ".", precision: 3) %>
+          <% else %>
+            <%= number_to_currency(product.qnt,:unit => "Ltr ", :separator => ",", :delimiter => ".", precision: 3) %>
+          <% end %>
+        </td>
+        <td><%= number_to_currency(product.price, :unit => "€ ", :separator => ",", :delimiter => ".") %></td>
+        <td><%= product.active %></td>
+        <td><%= product.push %></td>
+        <td class="centra">
+          <a href="#" data-dropdown="drop1-<%= product.id %>" class="button dropdown radius tiny">Options</a><br>
+          <ul id="drop1-<%= product.id %>" data-dropdown-content class="f-dropdown">
+            <li><%= link_to 'Edit', edit_product_path(product) %></li>
+            <li><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+          </ul>
+        </td>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>
+
+</div>
+</div>
+
+

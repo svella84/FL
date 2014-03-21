@@ -29,7 +29,7 @@ class Information < ActiveRecord::Base
   validates :credit, numericality: { greater_than_or_equal_to: 0.0 }, :allow_blank => true
 
 
-  def add_credit(value)
+  def add_credit(value) 
     decimal = true
 
     if value.is_a?(String)

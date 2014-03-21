@@ -1,6 +1,6 @@
 module ApplicationHelper
   private
-
+    # METODI GENERATI PER IL CORRETTO FUNZIONAMENTO DEVISE
     def session_user
       @user = User.new
     end
